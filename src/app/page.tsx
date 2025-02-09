@@ -1,4 +1,6 @@
 import Image from "next/image";
+import ThemeToggle from "@/components/theme/ThemeToggle";
+import TableIcon from "@/components/base/TableIcon";
 
 export default function Home() {
   return (
@@ -95,6 +97,7 @@ export default function Home() {
           />
           Go to nextjs.org →
         </a>
+        <ThemeToggle />
       </footer>
     </div>
   );
