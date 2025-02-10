@@ -1,20 +1,27 @@
 "use client";
-import { useRouter } from "next/navigation";
-import clsx from "clsx";
+import React, { useMemo } from "react";
+// import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-import React from "react";
+import { cx } from "@/utils/common";
 
-type TableIconProps = {
+export type TableIconProps = {
   name: string;
   className?: string;
   size?: Size | number;
   href?: string;
   onClick?: () => void;
+  hover?: boolean;
 };
 
 const sizeToDimension = (size: TableIconProps["size"]): number => {
   let num: number;
   switch (size) {
+    case "3xs":
+      num = 12;
+      break;
+    case "2xs":
+      num = 16;
+      break;
     case "xs":
       num = 20;
       break;
@@ -37,41 +44,48 @@ const sizeToDimension = (size: TableIconProps["size"]): number => {
 };
 
 export default function TableIcon(props: TableIconProps) {
-  const { name, className, size = "md", onClick, href } = props;
-
-  const router = useRouter();
+  const {
+    name,
+    className,
+    size = "md" /*onClick, href, hover = false*/,
+  } = props;
+  // const router = useRouter();
   const dimension = sizeToDimension(size);
 
-  // 43, 52, 69
-  // 210, 63, 87
+  const DynamicComponent = useMemo(
+    () =>
+      dynamic<SVGProps>(() => import(`../../../public/icons/${name}`), {
+        ssr: false,
+        loading: () => (
+          <div
+            className="daisy-skeleton bg-base-300"
+            style={{ width: dimension, height: dimension }}
+          />
+        ),
+      }),
+    [name, dimension],
+  );
 
   return (
-    <span
-      className={clsx(
-        "inline-block w-fit h-fit p-1.5 rounded-lg text-slate-500 dark:text-stone-500",
-        [(onClick || href) && "cursor-pointer hover:bg-gray-100"],
+    <DynamicComponent
+      width={dimension}
+      height={dimension}
+      className={cx(
+        "box-content p-1.5",
+        // { "cursor-pointer": onClick || href },
+        // { "hover:bg-base-300": hover || onClick || href },
         className,
       )}
-      onClick={() => {
-        if (onClick) {
-          onClick();
-        }
-
-        if (href) {
-          router.push(href);
-        }
-      }}
-    >
-      {React.createElement(
-        dynamic<SVGProps>(() => import(`../../../public/icons/${name}`), {
-          ssr: false,
-          loading: () => (
-            <div style={{ width: dimension, height: dimension }} />
-          ),
-        }),
-        { width: dimension, height: dimension },
-      )}
-    </span>
+      // onClick={() => {
+      //   if (onClick) {
+      //     onClick();
+      //   }
+      //
+      //   if (href) {
+      //     router.push(href);
+      //   }
+      // }}
+    />
   );
 }
 
@@ -80,7 +94,7 @@ export default function TableIcon(props: TableIconProps) {
 //   <Image
 //     src={`${theme === "light" ? "/icons" : "/icons-dark"}/${name}.svg`}
 //     alt={alt ?? `${name}-icon`}
-//     className={clsx(
+//     className={cx(
 //       "p-1.5 box-content rounded-md text-blue-500",
 //       [(onClick || href) && "cursor-pointer hover:bg-gray-100 "],
 //       className,

@@ -2,7 +2,10 @@ import React from "react";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import { Metadata } from "next";
-import Navbar from "@/components/navbar/Navbar";
+import { THEMES } from "@/constants";
+import SidebarProvider from "@/components/sidebar/SidebarProvider";
+import NavbarProvider from "@/components/navbar/NavbarProvider";
+
 // import { Geist, Geist_Mono } from "next/font/google";
 
 // const geistSans = Geist({
@@ -29,11 +32,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        className="font-sans antialiased bg-white dark:bg-black mt-12"
+        className="font-sans antialiased text-base-content"
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Navbar />
-          {children}
+        <ThemeProvider themes={THEMES}>
+          <SidebarProvider>
+            <NavbarProvider>{children}</NavbarProvider>
+          </SidebarProvider>
         </ThemeProvider>
       </body>
     </html>
