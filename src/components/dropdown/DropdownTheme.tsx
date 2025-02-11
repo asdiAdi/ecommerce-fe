@@ -23,7 +23,7 @@ export default function DropdownTheme(props: { className?: string }) {
 
       <ul
         tabIndex={0}
-        className="mt-1 daisy-dropdown-content bg-base-300 rounded-box z-1 w-52 p-2 shadow-2xl max-h-60 overflow-scroll"
+        className="mt-1 daisy-dropdown-content bg-base-300 rounded-box z-1 w-60 p-2 shadow-2xl max-h-60 overflow-y-scroll"
       >
         {THEMES.map((theme) => (
           <li

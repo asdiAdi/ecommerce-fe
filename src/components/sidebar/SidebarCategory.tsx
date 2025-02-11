@@ -12,34 +12,36 @@ export default function SidebarCategory(props: SidebarContentProps) {
       className={cx("daisy-join daisy-join-vertical bg-base-100", className)}
       {...rest}
     >
-      {CATEGORY_KEYS.map((key) => {
-        const subKeys = Object.keys(
-          COMBINED_CATEGORIES[key],
-        ) as SubCategoryKey[];
+      <ul>
+        {CATEGORY_KEYS.map((key) => {
+          const subKeys = Object.keys(
+            COMBINED_CATEGORIES[key],
+          ) as SubCategoryKey[];
 
-        return (
-          <li
-            key={`sidebar-category-${key}`}
-            className="daisy-collapse daisy-collapse-arrow daisy-join-item border-base-300 border"
-          >
-            <input type="checkbox" />
+          return (
+            <li
+              key={`sidebar-category-${key}`}
+              className="daisy-collapse daisy-collapse-arrow daisy-join-item border-base-300 border"
+            >
+              <input type="checkbox" />
 
-            <div className="daisy-collapse-title font-semibold">
-              {CATEGORIES[key]}
-            </div>
-            <ul className="daisy-collapse-content text-sm">
-              {subKeys.map((subKey) => (
-                <li
-                  key={`sidebar-sub-category-${subKey}`}
-                  className="text-lg pl-2 cursor-pointer"
-                >
-                  <a>{COMBINED_CATEGORIES[key][subKey]}</a>
-                </li>
-              ))}
-            </ul>
-          </li>
-        );
-      })}
+              <div className="daisy-collapse-title font-semibold">
+                {CATEGORIES[key]}
+              </div>
+              <ul className="daisy-collapse-content text-sm">
+                {subKeys.map((subKey) => (
+                  <li
+                    key={`sidebar-sub-category-${subKey}`}
+                    className="text-lg pl-2 cursor-pointer"
+                  >
+                    <a>{COMBINED_CATEGORIES[key][subKey]}</a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          );
+        })}
+      </ul>
     </SidebarContent>
   );
 }

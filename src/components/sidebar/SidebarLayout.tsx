@@ -1,9 +1,10 @@
 "use client";
 import { ComponentPropsWithoutRef } from "react";
+import SidebarCategory from "./SidebarCategory";
+import SidebarTheme from "./SidebarTheme";
+import SidebarCart from "./SidebarCart";
 import { useSidebar } from "./SidebarProvider";
 import { cx } from "@/utils/common";
-import SidebarCategory from "@/components/sidebar/SidebarCategory";
-import SidebarTheme from "@/components/sidebar/SidebarTheme";
 
 type SidebarLayoutProps = ComponentPropsWithoutRef<"div">;
 
@@ -15,7 +16,7 @@ export default function SidebarLayout(props: SidebarLayoutProps) {
     <div
       className={cx(
         "daisy-drawer",
-        { "daisy-drawer-end": isOpen === "theme" },
+        { "daisy-drawer-end": isOpen === "theme" || isOpen === "cart" },
         className,
       )}
       {...rest}
@@ -45,6 +46,7 @@ export default function SidebarLayout(props: SidebarLayoutProps) {
 
         {isOpen === "category" && <SidebarCategory />}
         {isOpen === "theme" && <SidebarTheme />}
+        {isOpen === "cart" && <SidebarCart />}
       </div>
     </div>
   );

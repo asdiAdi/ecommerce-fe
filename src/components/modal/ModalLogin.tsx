@@ -140,9 +140,7 @@ export default function ModalLogin(props: { id: string }) {
     <dialog id={id} className="daisy-modal">
       <div className="daisy-modal-box w-100 flex flex-col items-center">
         <TableIcon name="building-store" size="xl" href="/" />
-        <h3 className="font-bold text-xl pb-4">
-          Welcome to my Ecommerce Project
-        </h3>
+        <h3 className="font-bold text-xl pb-4">An Ecommerce Project</h3>
 
         <LoginField field={field} setField={setField} onLogin={() => {}} />
         <SignUpField field={field} setField={setField} onSignUp={() => {}} />

@@ -1,15 +1,11 @@
 import Image from "next/image";
+// import { getTest } from "@/api/product";
+import Test2 from "./test2";
 
 export default function Test() {
   return (
     <div>
-      <Image
-        src={"/icons/sport-car.png"}
-        alt={"sports car"}
-        width={64}
-        height={64}
-        className={"dark:invert"}
-      />
+      <Test2 />
     </div>
   );
 }

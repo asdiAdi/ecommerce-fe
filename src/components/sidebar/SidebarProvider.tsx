@@ -2,7 +2,7 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import SidebarLayout from "./SidebarLayout";
 
-export type SidebarOpenType = "category" | "account" | "theme" | null;
+export type SidebarOpenType = "category" | "account" | "theme" | "cart" | null;
 type SidebarContextType = {
   isOpen: SidebarOpenType;
   toggle: (open: SidebarOpenType) => void;

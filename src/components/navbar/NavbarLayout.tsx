@@ -17,7 +17,7 @@ export default function NavbarLayout() {
   return (
     <nav
       className={clsx(
-        "fixed top-0 w-full flex flex-col justify-between bg-base-200 z-20",
+        "fixed top-0 w-full flex flex-col justify-between items-center bg-base-200 z-20",
         { "shadow-sm": !isOpenSidebar },
       )}
     >
@@ -71,7 +71,13 @@ export default function NavbarLayout() {
 
           <ButtonIcon name="user-circle" onClick={() => toggleModal("login")} />
 
-          <ButtonIcon name="shopping-cart" />
+          <ButtonIcon
+            name="shopping-cart"
+            onClick={() => {
+              toggleNavbar(false);
+              toggleSidebar("cart");
+            }}
+          />
         </div>
       </div>
       <div
