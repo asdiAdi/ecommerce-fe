@@ -1,6 +1,8 @@
 "use client";
 import { createContext, ReactNode, useContext, useState } from "react";
-import SidebarLayout from "./SidebarLayout";
+import SidebarTheme from "@/components/sidebar/SidebarTheme";
+import SidebarCategory from "@/components/sidebar/SidebarCategory";
+import SidebarCart from "@/components/sidebar/SidebarCart";
 
 export type SidebarOpenType = "category" | "account" | "theme" | "cart" | null;
 type SidebarContextType = {
@@ -19,7 +21,11 @@ export default function SidebarProvider({ children }: { children: ReactNode }) {
 
   return (
     <SidebarContext.Provider value={{ isOpen, toggle }}>
-      <SidebarLayout>{children}</SidebarLayout>
+      <SidebarTheme>
+        <SidebarCategory>
+          <SidebarCart>{children}</SidebarCart>
+        </SidebarCategory>
+      </SidebarTheme>
     </SidebarContext.Provider>
   );
 }

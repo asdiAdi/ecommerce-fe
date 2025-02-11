@@ -1,37 +1,34 @@
-"use client";
-import { ComponentPropsWithoutRef } from "react";
-import SidebarCategory from "./SidebarCategory";
-import SidebarTheme from "./SidebarTheme";
-import SidebarCart from "./SidebarCart";
-import { useSidebar } from "./SidebarProvider";
+import { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cx } from "@/utils/common";
+import { clsx } from "clsx";
 
-type SidebarLayoutProps = ComponentPropsWithoutRef<"div">;
+type SidebarLayoutProps = ComponentPropsWithoutRef<"div"> & {
+  isOpen: boolean;
+  toggle: () => void;
+  side: ReactNode;
+  position?: string;
+};
 
 export default function SidebarLayout(props: SidebarLayoutProps) {
-  const { children, className, ...rest } = props;
-  const { isOpen, toggle } = useSidebar();
+  const {
+    isOpen,
+    toggle,
+    position = "left",
+    side,
+    children,
+    className,
+  } = props;
 
   return (
     <div
-      className={cx(
-        "daisy-drawer",
-        { "daisy-drawer-end": isOpen === "theme" || isOpen === "cart" },
-        className,
-      )}
-      {...rest}
+      className={cx("daisy-drawer", {
+        "daisy-drawer-end": position === "right",
+      })}
     >
-      {/*<div
-        className={cx(
-          "absolute top-14.5 left-[-300px] h-5 w-5 bg-base-300 z-40 rotate-45 lg:hidden transition-all ease-linear duration-200",
-          { "!left-8.5": isOpen },
-        )}
-      />*/}
-
       <input
         type="checkbox"
         className="daisy-drawer-toggle"
-        checked={isOpen !== null}
+        checked={isOpen}
         readOnly
       />
 
@@ -41,12 +38,18 @@ export default function SidebarLayout(props: SidebarLayoutProps) {
         <label
           aria-label="close sidebar"
           className="daisy-drawer-overlay"
-          onClick={() => toggle(null)}
+          onClick={() => toggle()}
         />
-
-        {isOpen === "category" && <SidebarCategory />}
-        {isOpen === "theme" && <SidebarTheme />}
-        {isOpen === "cart" && <SidebarCart />}
+        <div
+          className={clsx(
+            "bg-base-300 min-h-[calc(100%-56px)] p-4 w-full sm:w-80 mt-14 overflow-hidden",
+            "transition-all ease-linear",
+            "overflow-y-scroll",
+            className,
+          )}
+        >
+          {side}
+        </div>
       </div>
     </div>
   );
