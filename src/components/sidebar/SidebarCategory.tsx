@@ -16,32 +16,23 @@ export default function SidebarCategory(props: { children: ReactNode }) {
       toggle={() => toggle("category")}
       className={cx("daisy-join daisy-join-vertical bg-base-100")}
       side={
-        <ul>
+        <ul className="daisy-menu w-full h-full">
           {CATEGORY_KEYS.map((key) => {
             const subKeys = Object.keys(
               COMBINED_CATEGORIES[key],
             ) as SubCategoryKey[];
-
             return (
-              <li
-                key={`sidebar-category-${key}`}
-                className="daisy-collapse daisy-collapse-arrow daisy-join-item"
-              >
-                <input type="checkbox" />
-
-                <div className="daisy-collapse-title font-semibold">
-                  {CATEGORIES[key]}
-                </div>
-                <ul className="daisy-collapse-content text-sm">
-                  {subKeys.map((subKey) => (
-                    <li
-                      key={`sidebar-sub-category-${subKey}`}
-                      className="text-lg pl-2 cursor-pointer"
-                    >
-                      <a>{COMBINED_CATEGORIES[key][subKey]}</a>
-                    </li>
-                  ))}
-                </ul>
+              <li key={`sidebar-category-${key}`}>
+                <details open>
+                  <summary>{CATEGORIES[key]}</summary>
+                  <ul>
+                    {subKeys.map((subKey) => (
+                      <li key={`sidebar-sub-category-${subKey}`}>
+                        <a>{COMBINED_CATEGORIES[key][subKey]}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
               </li>
             );
           })}

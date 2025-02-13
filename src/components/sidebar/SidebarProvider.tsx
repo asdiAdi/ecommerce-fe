@@ -3,6 +3,7 @@ import { createContext, ReactNode, useContext, useState } from "react";
 import SidebarTheme from "@/components/sidebar/SidebarTheme";
 import SidebarCategory from "@/components/sidebar/SidebarCategory";
 import SidebarCart from "@/components/sidebar/SidebarCart";
+import SidebarAccount from "@/components/sidebar/SidebarAccount";
 
 export type SidebarOpenType = "category" | "account" | "theme" | "cart" | null;
 type SidebarContextType = {
@@ -23,7 +24,9 @@ export default function SidebarProvider({ children }: { children: ReactNode }) {
     <SidebarContext.Provider value={{ isOpen, toggle }}>
       <SidebarTheme>
         <SidebarCategory>
-          <SidebarCart>{children}</SidebarCart>
+          <SidebarAccount>
+            <SidebarCart>{children}</SidebarCart>
+          </SidebarAccount>
         </SidebarCategory>
       </SidebarTheme>
     </SidebarContext.Provider>

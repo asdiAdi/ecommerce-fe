@@ -47,7 +47,7 @@ export default function TableIcon(props: TableIconProps) {
   const {
     name,
     className,
-    size = "md" /*onClick, href, hover = false*/,
+    size = "sm" /*onClick, href, hover = false*/,
   } = props;
   // const router = useRouter();
   const dimension = sizeToDimension(size);

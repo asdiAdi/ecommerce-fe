@@ -14,7 +14,7 @@ export default function SidebarLayout(props: SidebarLayoutProps) {
     isOpen,
     toggle,
     position = "left",
-    isHiddenLarge,
+    isHiddenLarge = true,
     side,
     children,
     className,
@@ -41,16 +41,15 @@ export default function SidebarLayout(props: SidebarLayoutProps) {
           className="daisy-drawer-overlay"
           onClick={() => toggle()}
         />
-        <div
+        <aside
           className={cx(
-            "bg-base-300 min-h-[calc(100%-56px)] p-4 w-full sm:w-80 mt-14 overflow-hidden",
+            "p-0 bg-base-100 min-h-[calc(100%-56px)] w-full sm:w-80 mt-14 overflow-x-hidden overflow-y-scroll",
             "transition-all ease-linear",
-            "overflow-y-scroll",
             className,
           )}
         >
           {side}
-        </div>
+        </aside>
       </div>
     </div>
   );

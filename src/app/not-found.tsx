@@ -20,7 +20,7 @@ export default function NotFound() {
 
           <Link href="/">
             <div className="flex gap-2 px-1 py-0 items-center text-md font-bold border-b-2 w-fit">
-              <TableIcon name="arrow-back-up" size="sm" /> Go Home
+              <TableIcon name="arrow-back-up" /> Go Home
             </div>
           </Link>
         </div>

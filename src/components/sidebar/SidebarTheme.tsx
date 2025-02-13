@@ -15,7 +15,7 @@ export default function SidebarTheme(props: { children: ReactNode }) {
       toggle={() => toggle("theme")}
       position="right"
       side={
-        <ul>
+        <ul className="p-4 daisy-menu w-full">
           {THEMES.map((theme) => (
             <li
               key={`sidebar-${theme}`}
@@ -23,7 +23,7 @@ export default function SidebarTheme(props: { children: ReactNode }) {
             >
               <input
                 type="radio"
-                className="daisy-theme-controller daisy-btn daisy-btn-md w-2/5 daisy-btn-ghost justify-start capitalize"
+                className="daisy-theme-controller w-2/5 daisy-btn daisy-btn-md  daisy-btn-ghost justify-start capitalize"
                 aria-label={theme}
                 value={theme}
                 checked={theme === currentTheme}
@@ -53,10 +53,4 @@ export default function SidebarTheme(props: { children: ReactNode }) {
       {children}
     </SidebarLayout>
   );
-  // return (
-  //   <SidebarContent
-  //     className={cx("daisy-menu", className)}
-  //     {...rest}
-  //   ></SidebarContent>
-  // );
 }
