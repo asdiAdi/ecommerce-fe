@@ -19,6 +19,9 @@ type ProductType = {
   category_name: string;
 };
 
-type CartType = Pick<ProductType, "img_url" | "title" | "price" | "quantity">;
+type CartType = Pick<ProductType, "img_url" | "title" | "price"> & {
+  id: string;
+  quantity: number;
+};
 
 type SVGProps = SVGProps<SVGSVGElement>;

@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import { THEMES } from "@/constants";
 import SidebarProvider from "@/components/sidebar/SidebarProvider";
 import NavbarProvider from "@/components/navbar/NavbarProvider";
+import QueryProvider from "@/components/queryclient/QueryProvider";
 
 // import { Geist, Geist_Mono } from "next/font/google";
 
@@ -34,11 +35,13 @@ export default function RootLayout({
         // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         className="font-sans antialiased text-base-content"
       >
-        <ThemeProvider themes={THEMES}>
-          <SidebarProvider>
-            <NavbarProvider>{children}</NavbarProvider>
-          </SidebarProvider>
-        </ThemeProvider>
+        <QueryProvider>
+          <ThemeProvider themes={THEMES}>
+            <SidebarProvider>
+              <NavbarProvider>{children}</NavbarProvider>
+            </SidebarProvider>
+          </ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   );

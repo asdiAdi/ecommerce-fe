@@ -1,12 +1,12 @@
 import { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cx } from "@/utils/common";
-import { clsx } from "clsx";
 
 type SidebarLayoutProps = ComponentPropsWithoutRef<"div"> & {
   isOpen: boolean;
   toggle: () => void;
   side: ReactNode;
   position?: string;
+  isHiddenLarge?: boolean;
 };
 
 export default function SidebarLayout(props: SidebarLayoutProps) {
@@ -14,6 +14,7 @@ export default function SidebarLayout(props: SidebarLayoutProps) {
     isOpen,
     toggle,
     position = "left",
+    isHiddenLarge,
     side,
     children,
     className,
@@ -34,14 +35,14 @@ export default function SidebarLayout(props: SidebarLayoutProps) {
 
       <div className="daisy-drawer-content">{children}</div>
 
-      <div className="daisy-drawer-side lg:hidden">
+      <div className={cx("daisy-drawer-side", { "lg:hidden": isHiddenLarge })}>
         <label
           aria-label="close sidebar"
           className="daisy-drawer-overlay"
           onClick={() => toggle()}
         />
         <div
-          className={clsx(
+          className={cx(
             "bg-base-300 min-h-[calc(100%-56px)] p-4 w-full sm:w-80 mt-14 overflow-hidden",
             "transition-all ease-linear",
             "overflow-y-scroll",

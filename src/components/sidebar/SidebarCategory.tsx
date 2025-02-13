@@ -25,7 +25,7 @@ export default function SidebarCategory(props: { children: ReactNode }) {
             return (
               <li
                 key={`sidebar-category-${key}`}
-                className="daisy-collapse daisy-collapse-arrow daisy-join-item border-base-300 border"
+                className="daisy-collapse daisy-collapse-arrow daisy-join-item"
               >
                 <input type="checkbox" />
 

@@ -15,7 +15,7 @@ export default function ButtonIcon(props: ButtonIconProps) {
   return (
     <button
       className={cx(
-        "daisy-btn border-none w-fit",
+        "daisy-btn border-none w-fit h-fit",
         {
           "daisy-btn-square": shape === "square",
           "daisy-btn-circle": shape === "circle",
