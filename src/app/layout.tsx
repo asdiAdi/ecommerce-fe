@@ -6,6 +6,7 @@ import { THEMES } from "@/constants";
 import SidebarProvider from "@/components/sidebar/SidebarProvider";
 import NavbarProvider from "@/components/navbar/NavbarProvider";
 import QueryProvider from "@/components/queryclient/QueryProvider";
+import Footer from "@/components/footer/Footer";
 
 // import { Geist, Geist_Mono } from "next/font/google";
 
@@ -38,7 +39,10 @@ export default function RootLayout({
         <QueryProvider>
           <ThemeProvider themes={THEMES}>
             <SidebarProvider>
-              <NavbarProvider>{children}</NavbarProvider>
+              <NavbarProvider>
+                <main className="min-w-90 min-h-screen">{children}</main>
+                <Footer />
+              </NavbarProvider>
             </SidebarProvider>
           </ThemeProvider>
         </QueryProvider>

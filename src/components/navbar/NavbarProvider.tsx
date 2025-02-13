@@ -18,14 +18,14 @@ export default function NavbarProvider({ children }: { children: ReactNode }) {
   return (
     <NavbarContext.Provider value={{ isOpen, toggle }}>
       <NavbarLayout />
-      <main
+      <div
         className={clsx("transition-all ease-linear sm:mt-14", {
           "mt-14": !isOpen,
           "mt-28": isOpen,
         })}
       >
         {children}
-      </main>
+      </div>
     </NavbarContext.Provider>
   );
 }
