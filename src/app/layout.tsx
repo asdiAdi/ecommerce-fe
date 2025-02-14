@@ -34,13 +34,16 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        className="font-sans antialiased text-base-content"
+        className="font-sans antialiased text-base-content bg-base-200"
       >
         <QueryProvider>
           <ThemeProvider themes={THEMES}>
             <SidebarProvider>
               <NavbarProvider>
-                <main className="min-w-90 min-h-screen">{children}</main>
+                <main className="min-w-90 min-h-[calc(100vh-276px)]">
+                  {/*calc screen - footer height - header -height*/}
+                  {children}
+                </main>
                 <Footer />
               </NavbarProvider>
             </SidebarProvider>
