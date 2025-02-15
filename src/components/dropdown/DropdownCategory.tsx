@@ -20,7 +20,7 @@ export default function DropdownCategory(props: { className?: string }) {
 
       <ul
         tabIndex={0}
-        className="mt-1 daisy-dropdown-content bg-base-300 rounded-box z-1 w-52 p-2 shadow-2xl"
+        className="daisy-dropdown-content z-1 mt-1 w-52 rounded-box bg-base-300 p-2 shadow-2xl"
       >
         {CATEGORY_KEYS.map((key) => {
           const subKeys = Object.keys(
@@ -30,16 +30,16 @@ export default function DropdownCategory(props: { className?: string }) {
           return (
             <li
               key={`dropdown-category-${key}`}
-              className="daisy-dropdown daisy-dropdown-right daisy-dropdown-hover rounded-lg hover:bg-base-300 flex flex-col"
+              className="daisy-dropdown-hover daisy-dropdown daisy-dropdown-right flex flex-col rounded-lg hover:bg-base-300"
             >
               <div
                 tabIndex={0}
                 role="button"
-                className="cursor-pointer p-2 flex justify-between items-center"
+                className="flex cursor-pointer items-center justify-between p-2"
               >
                 {CATEGORIES[key]} <TableIcon name="chevron-right" size="xs" />
               </div>
-              <ul className="mt-1 daisy-dropdown-content bg-base-300 rounded-box z-1 w-52 p-2 shadow-xl">
+              <ul className="daisy-dropdown-content z-1 mt-1 w-52 rounded-box bg-base-300 p-2 shadow-xl">
                 {subKeys.map((subKey) => (
                   <li
                     key={`dropdown-sub-category-${subKey}`}

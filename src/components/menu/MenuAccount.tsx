@@ -10,7 +10,7 @@ export default function MenuAccount(props: MenuAccountProps) {
   const { className, isCompact = false, ...rest } = props;
 
   return (
-    <ul className={cx("daisy-menu w-full h-full", className)} {...rest}>
+    <ul className={cx("daisy-menu h-full w-full", className)} {...rest}>
       <li className={cx("daisy-menu-title uppercase", { "py-0": isCompact })}>
         Dashboard
       </li>
@@ -35,8 +35,8 @@ export default function MenuAccount(props: MenuAccountProps) {
       </li>
 
       <li
-        className={cx("daisy-menu-title uppercase mt-8", {
-          "py-0 mt-4": isCompact,
+        className={cx("mt-8 daisy-menu-title uppercase", {
+          "mt-4 py-0": isCompact,
         })}
       >
         Account Settings

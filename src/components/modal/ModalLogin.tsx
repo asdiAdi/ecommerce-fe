@@ -17,20 +17,20 @@ function LoginField(props: {
 
   return (
     <div
-      className={cx("w-full flex flex-col items-center", {
+      className={cx("flex w-full flex-col items-center", {
         hidden: field !== "login",
       })}
     >
-      <h4 className="pb-2 font-semibold text-primary text-lg">
+      <h4 className="pb-2 text-lg font-semibold text-primary">
         Login to my account
       </h4>
       <p className="pb-4">Enter your username and password:</p>
 
-      <form className="w-full mb-8" onSubmit={onLogin}>
+      <form className="mb-8 w-full" onSubmit={onLogin}>
         <Username className="mb-4" />
         <Password className="mb-8" />
 
-        <button className="daisy-btn daisy-btn-primary w-full">Login</button>
+        <button className="daisy-btn w-full daisy-btn-primary">Login</button>
       </form>
 
       <p className="mb-4 text-sm">
@@ -64,20 +64,20 @@ function SignUpField(props: {
 
   return (
     <div
-      className={cx("w-full flex flex-col items-center", {
+      className={cx("flex w-full flex-col items-center", {
         hidden: field !== "signup",
       })}
     >
-      <h4 className="pb-2 font-semibold text-primary text-lg">
+      <h4 className="pb-2 text-lg font-semibold text-primary">
         Create my account
       </h4>
       <p className="pb-4">Please fill in the information below:</p>
 
-      <form className="w-full mb-4" onSubmit={onSignUp}>
+      <form className="mb-4 w-full" onSubmit={onSignUp}>
         <Username className="mb-4" />
         <Password className="mb-8" />
 
-        <button className="daisy-btn daisy-btn-primary w-full">
+        <button className="daisy-btn w-full daisy-btn-primary">
           Create my account
         </button>
       </form>
@@ -104,19 +104,19 @@ function RecoverField(props: {
 
   return (
     <div
-      className={cx("w-full flex flex-col items-center", {
+      className={cx("flex w-full flex-col items-center", {
         hidden: field !== "recover",
       })}
     >
-      <h4 className="pb-2 font-semibold text-primary text-lg">
+      <h4 className="pb-2 text-lg font-semibold text-primary">
         Recover password
       </h4>
       <p className="pb-4">Enter your email:</p>
 
-      <form className="w-full mb-4" onSubmit={onRecover}>
+      <form className="mb-4 w-full" onSubmit={onRecover}>
         <Email className="mb-8" />
 
-        <button className="daisy-btn daisy-btn-primary w-full">Recover</button>
+        <button className="daisy-btn w-full daisy-btn-primary">Recover</button>
       </form>
 
       <p className="mb-4 text-sm">
@@ -138,9 +138,9 @@ export default function ModalLogin(props: { id: string }) {
 
   return (
     <dialog id={id} className="daisy-modal">
-      <div className="daisy-modal-box w-100 flex flex-col items-center">
+      <div className="daisy-modal-box flex w-100 flex-col items-center">
         <TableIcon name="building-store" size="xl" href="/" />
-        <h3 className="font-bold text-xl pb-4">An Ecommerce Project</h3>
+        <h3 className="pb-4 text-xl font-bold">An Ecommerce Project</h3>
 
         <LoginField field={field} setField={setField} onLogin={() => {}} />
         <SignUpField field={field} setField={setField} onSignUp={() => {}} />

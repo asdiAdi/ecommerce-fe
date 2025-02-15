@@ -9,8 +9,8 @@ export default function Password(props: UsernameProps) {
 
   return (
     <div className={cx("w-full", className)} {...rest}>
-      <label className="daisy-input daisy-validator w-full">
-        <TableIcon name="key-outline" className="opacity-50 p-0" size="2xs" />
+      <label className="daisy-validator daisy-input w-full">
+        <TableIcon name="key-outline" className="p-0 opacity-50" size="2xs" />
 
         <input
           type="password"
@@ -23,7 +23,7 @@ export default function Password(props: UsernameProps) {
 
         <TableIcon
           name="eye-off"
-          className="opacity-50 p-0"
+          className="p-0 opacity-50"
           size="2xs"
           href="/"
         />

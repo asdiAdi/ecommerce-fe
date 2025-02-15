@@ -16,7 +16,7 @@ export default function CartItem(props: CartItemProps) {
 
   return (
     <div className="grid grid-cols-12 grid-rows-2">
-      <div className="col-span-3 row-span-2 place-self-center min-w-fit max-w-20 size-20 flex items-center justify-between ">
+      <div className="col-span-3 row-span-2 flex size-20 max-w-20 min-w-fit items-center justify-between place-self-center">
         <Image
           src={img_url}
           width={twSizeToPx(20)}
@@ -26,12 +26,12 @@ export default function CartItem(props: CartItemProps) {
         />
       </div>
 
-      <div className="col-span-8 sm:col-start-5 sm:col-span-7">
-        <p className="text-nowrap text-ellipsis overflow-hidden">{title}</p>
+      <div className="col-span-8 sm:col-span-7 sm:col-start-5">
+        <p className="overflow-hidden text-nowrap text-ellipsis">{title}</p>
         <p>{price}</p>
       </div>
 
-      <div className="col-span-3 sm:col-start-5 sm:col-span-7 row-start-2! self-end flex gap-3 items-center">
+      <div className="col-span-3 row-start-2! flex items-center gap-3 self-end sm:col-span-7 sm:col-start-5">
         <ButtonIcon
           name="plus"
           size="2xs"
@@ -50,7 +50,7 @@ export default function CartItem(props: CartItemProps) {
       <ButtonIcon
         name="x"
         size="2xs"
-        className="col-start-12 row-span-2 justify-self-end self-center opacity-50"
+        className="col-start-12 row-span-2 self-center justify-self-end opacity-50"
         onClick={() => onRemove(id)}
       />
     </div>

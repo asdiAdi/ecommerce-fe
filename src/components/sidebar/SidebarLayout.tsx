@@ -43,7 +43,7 @@ export default function SidebarLayout(props: SidebarLayoutProps) {
         />
         <aside
           className={cx(
-            "p-0 bg-base-100 min-h-[calc(100%-56px)] w-full sm:w-80 mt-14 overflow-x-hidden overflow-y-scroll",
+            "mt-14 min-h-[calc(100%-56px)] w-full overflow-x-hidden overflow-y-scroll bg-base-100 p-0 sm:w-80",
             "transition-all ease-linear",
             className,
           )}

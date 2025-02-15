@@ -6,35 +6,35 @@ import MenuAccount from "@/components/menu/MenuAccount";
 
 export default function Test() {
   return (
-    <section className="p-6 mb-8 xl:flex xl:flex-row gap-6">
-      <div className="hidden xl:block daisy-card shadow-sm bg-base-100 w-104">
+    <section className="mb-8 gap-6 p-6 xl:flex xl:flex-row">
+      <div className="daisy-card hidden w-104 bg-base-100 shadow-sm xl:block">
         <MenuAccount className="daisy-card-body p-4" isCompact />
       </div>
       <div>
         {/*MY PROFILE*/}
-        <div className="mb-4 flex justify-between items-center">
+        <div className="mb-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="bg-base-300 w-fit h-fit rounded-lg">
+            <div className="h-fit w-fit rounded-lg bg-base-300">
               <TableIcon name="user-filled" className="text-secondary" />
             </div>
             <h2 className="text-xl font-bold">My Profile</h2>
           </div>
           <div className="flex items-center gap-4">
             <ButtonIcon name="menu-2" />
-            <button className="hidden sm:block daisy-btn daisy-btn-secondary daisy-btn-soft">
+            <button className="daisy-btn hidden daisy-btn-secondary daisy-btn-soft sm:block">
               Edit Profile
             </button>
           </div>
         </div>
-        <button className="mb-6 sm:hidden daisy-btn daisy-btn-secondary daisy-btn-soft w-full">
+        <button className="daisy-btn mb-6 w-full daisy-btn-secondary daisy-btn-soft sm:hidden">
           Edit Profile
         </button>
         {/*END MY PROFILE*/}
-        <div className="mb-6 grid grid-cols-2 grid-rows-2 lg:grid-cols-4 xl:grid-cols-8 xl:grid-rows-1 gap-6 w-full">
+        <div className="mb-6 grid w-full grid-cols-2 grid-rows-2 gap-6 lg:grid-cols-4 xl:grid-cols-8 xl:grid-rows-1">
           {/* USER CARD */}
-          <div className="py-4 px-8 col-span-2 lg:row-span-2 xl:col-span-4 xl:row-span-1 daisy-card daisy-card-md daisy-card-side  w-full bg-base-100  shadow-sm">
+          <div className="daisy-card col-span-2 daisy-card-side w-full bg-base-100 px-8 py-4 shadow-sm daisy-card-md lg:row-span-2 xl:col-span-4 xl:row-span-1">
             <figure className="daisy-avatar">
-              <div className="w-24 h-fit rounded-full">
+              <div className="h-fit w-24 rounded-full">
                 <Image src={Avatar} alt="Movie" />
               </div>
             </figure>
@@ -47,7 +47,7 @@ export default function Test() {
             </div>
 
             {/* TODO: customer roles */}
-            <p className="place-self-center uppercase font-bold opacity-50">
+            <p className="place-self-center font-bold uppercase opacity-50">
               Silver User
             </p>
           </div>
@@ -62,10 +62,10 @@ export default function Test() {
           ].map(({ label, value }, index) => (
             <div
               key={`account-grid-${index}`}
-              className="daisy-card bg-base-100 daisy-card-lg shadow-sm text-center"
+              className="daisy-card bg-base-100 text-center shadow-sm daisy-card-lg"
             >
               <div className="daisy-card-body items-center">
-                <div className="text-2xl text-secondary font-bold">{value}</div>
+                <div className="text-2xl font-bold text-secondary">{value}</div>
                 <div className="opacity-50">{label}</div>
               </div>
             </div>
@@ -73,26 +73,26 @@ export default function Test() {
           {/* END ORDER GRID */}
         </div>
         {/* PRIVATE INFO CARD */}
-        <div className="daisy-card bg-base-100 daisy-card-lg shadow-sm text-center">
+        <div className="daisy-card bg-base-100 text-center shadow-sm daisy-card-lg">
           <ul className="daisy-card-body justify-between lg:flex-row lg:justify-around">
-            <li className="flex flex-col gap-1 items-start">
-              <span className="opacity-50 font-semibold">First Name</span>
+            <li className="flex flex-col items-start gap-1">
+              <span className="font-semibold opacity-50">First Name</span>
               <span>Nick</span>
             </li>
-            <li className="flex flex-col gap-1 items-start">
-              <span className="opacity-50 font-semibold">Last Name</span>
+            <li className="flex flex-col items-start gap-1">
+              <span className="font-semibold opacity-50">Last Name</span>
               <span>DuBuque</span>
             </li>
-            <li className="flex flex-col gap-1 items-start">
-              <span className="opacity-50 font-semibold">Email Name</span>
+            <li className="flex flex-col items-start gap-1">
+              <span className="font-semibold opacity-50">Email Name</span>
               <span>Jayden.Gislason78@gmail.com</span>
             </li>
-            <li className="flex flex-col gap-1 items-start">
-              <span className="opacity-50 font-semibold">Phone</span>
+            <li className="flex flex-col items-start gap-1">
+              <span className="font-semibold opacity-50">Phone</span>
               <span>(445) 653-3771 x985</span>
             </li>
-            <li className="flex flex-col gap-1 items-start">
-              <span className="opacity-50 font-semibold">Birth date</span>
+            <li className="flex flex-col items-start gap-1">
+              <span className="font-semibold opacity-50">Birth date</span>
               <span>25 Apr, 1996</span>
             </li>
           </ul>

@@ -23,7 +23,7 @@ export default function DropdownTheme(props: { className?: string }) {
 
       <ul
         tabIndex={0}
-        className="mt-1 daisy-dropdown-content bg-base-300 rounded-box z-1 w-60 p-2 shadow-2xl max-h-60 overflow-y-scroll"
+        className="daisy-dropdown-content z-1 mt-1 max-h-60 w-60 overflow-y-scroll rounded-box bg-base-300 p-2 shadow-2xl"
       >
         {THEMES.map((theme) => (
           <li
@@ -33,7 +33,7 @@ export default function DropdownTheme(props: { className?: string }) {
             <input
               type="radio"
               name="daisy-theme-dropdown"
-              className="daisy-theme-controller daisy-btn daisy-btn-sm w-1/2 daisy-btn-ghost justify-start capitalize"
+              className="daisy-theme-controller daisy-btn w-1/2 justify-start daisy-btn-sm capitalize daisy-btn-ghost"
               aria-label={theme}
               value={theme}
               checked={theme === currentTheme}
@@ -44,7 +44,7 @@ export default function DropdownTheme(props: { className?: string }) {
             />
 
             <div
-              className="right-0 p-0 w-[calc(50%-10px)] my-1 flex gap-0 cursor-pointer"
+              className="right-0 my-1 flex w-[calc(50%-10px)] cursor-pointer gap-0 p-0"
               data-theme={theme}
               onClick={() => {
                 setTheme(theme);

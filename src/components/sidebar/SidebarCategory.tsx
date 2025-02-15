@@ -14,9 +14,9 @@ export default function SidebarCategory(props: { children: ReactNode }) {
     <SidebarLayout
       isOpen={isOpen === "category"}
       toggle={() => toggle("category")}
-      className={cx("daisy-join daisy-join-vertical bg-base-100")}
+      className={cx("daisy-join-vertical daisy-join bg-base-100")}
       side={
-        <ul className="daisy-menu w-full h-full">
+        <ul className="daisy-menu h-full w-full">
           {CATEGORY_KEYS.map((key) => {
             const subKeys = Object.keys(
               COMBINED_CATEGORIES[key],

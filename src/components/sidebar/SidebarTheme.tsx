@@ -15,7 +15,7 @@ export default function SidebarTheme(props: { children: ReactNode }) {
       toggle={() => toggle("theme")}
       position="right"
       side={
-        <ul className="p-4 daisy-menu w-full">
+        <ul className="daisy-menu w-full p-4">
           {THEMES.map((theme) => (
             <li
               key={`sidebar-${theme}`}
@@ -23,7 +23,7 @@ export default function SidebarTheme(props: { children: ReactNode }) {
             >
               <input
                 type="radio"
-                className="daisy-theme-controller w-2/5 daisy-btn daisy-btn-md  daisy-btn-ghost justify-start capitalize"
+                className="daisy-theme-controller daisy-btn w-2/5 justify-start daisy-btn-md capitalize daisy-btn-ghost"
                 aria-label={theme}
                 value={theme}
                 checked={theme === currentTheme}
@@ -34,7 +34,7 @@ export default function SidebarTheme(props: { children: ReactNode }) {
               />
 
               <div
-                className="right-0 p-0 w-[calc(60%-20px)] my-1 flex gap-0"
+                className="right-0 my-1 flex w-[calc(60%-20px)] gap-0 p-0"
                 data-theme={theme}
                 onClick={() => {
                   setTheme(theme);

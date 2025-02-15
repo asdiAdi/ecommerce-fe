@@ -28,16 +28,16 @@ export default function SidebarCart(props: { children: ReactNode }) {
       isHiddenLarge={false}
       side={
         <>
-          <div className="flex items-center pb-2 border-b-1">
+          <div className="flex items-center border-b-1 pb-2">
             <BasketOutline
               width={24}
               height={24}
-              className="p-1.5 box-content"
+              className="box-content p-1.5"
             />
             <span>{`${cartNum} item${cartNum <= 0 ? "" : "s"}`}</span>
           </div>
 
-          <ul className="flex-1 daisy-list">
+          <ul className="daisy-list flex-1">
             {data?.map((product, index) => {
               return (
                 <li
@@ -55,10 +55,10 @@ export default function SidebarCart(props: { children: ReactNode }) {
             })}
           </ul>
 
-          <button className="bottom-0 w-full daisy-btn daisy-btn-primary">
+          <button className="daisy-btn bottom-0 w-full daisy-btn-primary">
             {`Checkout Now ($${sum})`}
           </button>
-          <button className="bottom-0 w-full daisy-btn daisy-btn-outline">
+          <button className="daisy-btn bottom-0 w-full daisy-btn-outline">
             View Cart
           </button>
         </>

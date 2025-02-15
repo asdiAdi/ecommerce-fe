@@ -9,7 +9,7 @@ export default function Email(props: EmailProps) {
 
   return (
     <div className={cx("w-full", className)} {...rest}>
-      <label className="daisy-input daisy-validator w-full">
+      <label className="daisy-validator daisy-input w-full">
         <TableIcon name="mail-outline" size="2xs" />
         <input type="email" placeholder="mail@site.com" required />
       </label>

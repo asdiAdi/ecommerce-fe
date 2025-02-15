@@ -22,7 +22,7 @@ export default function SwapIcons(props: SwapIconProps) {
   return (
     <label
       className={cx(
-        "daisy-swap daisy-btn daisy-btn-square w-fit h-fit border-none",
+        "daisy-btn daisy-swap daisy-btn-square h-fit w-fit border-none",
         {
           ["daisy-swap-rotate"]: swap === "rotate",
           ["daisy-swap-flip"]: swap === "flip",

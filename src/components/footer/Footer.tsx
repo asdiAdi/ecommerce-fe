@@ -3,7 +3,7 @@ import { FACEBOOK_URL, GITHUB_URL, LINKEDIN_URL } from "@/constants/links";
 
 export default function Footer() {
   return (
-    <footer className="grid grid-cols-2 grid-rows-2 sm:grid-cols-none sm:grid-rows-none sm:flex sm:justify-evenly items-start daisy-footer bg-base-300 text-base-content p-10">
+    <footer className="daisy-footer grid grid-cols-2 grid-rows-2 items-start bg-base-300 p-10 text-base-content sm:flex sm:grid-cols-none sm:grid-rows-none sm:justify-evenly">
       <nav>
         <h6 className="daisy-footer-title">About Us</h6>
         <a className="daisy-link daisy-link-hover">Careers</a>
@@ -49,21 +49,21 @@ export default function Footer() {
             <TableIcon
               name="linkedin-filled"
               size="lg"
-              className="p-0 cursor-pointer"
+              className="cursor-pointer p-0"
             />
           </a>
           <a target="_blank" rel="noreferrer" href={GITHUB_URL}>
             <TableIcon
               name="github-filled"
               size="lg"
-              className="p-0 cursor-pointer"
+              className="cursor-pointer p-0"
             />
           </a>
           <a target="_blank" rel="noreferrer" href={FACEBOOK_URL}>
             <TableIcon
               name="facebook-filled"
               size="lg"
-              className="p-0 cursor-pointer"
+              className="cursor-pointer p-0"
             />
           </a>
         </div>

@@ -17,16 +17,16 @@ export default function NavbarLayout() {
   return (
     <nav
       className={clsx(
-        "fixed top-0 w-full flex flex-col justify-between items-center bg-base-200 z-20",
+        "fixed top-0 z-20 flex w-full flex-col items-center justify-between bg-base-200",
         { "shadow-sm": !isOpenSidebar },
       )}
     >
-      <div className="min-h-0 max-h-14 daisy-navbar px-6 max-w-400">
-        <div className="daisy-navbar-start gap-1 ">
+      <div className="daisy-navbar max-h-14 min-h-0 max-w-400 px-6">
+        <div className="daisy-navbar-start gap-1">
           <SwapIcons
             nameOff="menu-2"
             nameOn="x"
-            className="self-center lg:hidden rounded-lg hover:bg-base-300"
+            className="self-center rounded-lg hover:bg-base-300 lg:hidden"
             inputProps={{
               onClick: () => {
                 toggleNavbar(false);
@@ -42,7 +42,7 @@ export default function NavbarLayout() {
           <DropdownCategory className="daisy-dropdown-start hidden lg:block" />
         </div>
 
-        <NavbarSearch className="rounded-full hidden sm:inline-flex sm:daisy-navbar-center w-1/2" />
+        <NavbarSearch className="hidden w-1/2 rounded-full sm:daisy-navbar-center sm:inline-flex" />
 
         <div className="daisy-navbar-end gap-1">
           <ButtonIcon
@@ -58,7 +58,7 @@ export default function NavbarLayout() {
           <SwapIcons
             nameOff="brush"
             nameOn="x"
-            className="self-center lg:hidden rounded-lg hover:bg-base-300"
+            className="self-center rounded-lg hover:bg-base-300 lg:hidden"
             inputProps={{
               onClick: () => {
                 toggleNavbar(false);
@@ -82,12 +82,12 @@ export default function NavbarLayout() {
       </div>
       <div
         className={clsx(
-          "px-6 overflow-hidden transition-all ease-linear",
+          "overflow-hidden px-6 transition-all ease-linear",
           { "h-0 pb-0": !isOpenNavbar },
           { "h-14 py-2 sm:h-fit sm:py-0": isOpenNavbar },
         )}
       >
-        <NavbarSearch className="rounded-sm sm:hidden inline-flex w-full" />
+        <NavbarSearch className="inline-flex w-full rounded-sm sm:hidden" />
       </div>
 
       <ModalLogin id="login" />
