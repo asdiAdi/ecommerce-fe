@@ -31,6 +31,14 @@ type AddressType = {
   description?: string;
 };
 
+type PaymentMethodType = {
+  name: string;
+  card_number: string;
+  card_type: "mastercard" | "visa" | "paypal";
+  cvc: string;
+  expiry_date: string;
+};
+
 type CartType = Pick<ProductType, "img_url" | "title" | "price"> & {
   id: string;
   quantity: number;

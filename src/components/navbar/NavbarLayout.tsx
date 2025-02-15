@@ -69,7 +69,13 @@ export default function NavbarLayout() {
             }}
           />
 
-          <ButtonIcon name="user-circle" onClick={() => toggleModal("login")} />
+          <ButtonIcon
+            name="user-circle"
+            onClick={() => {
+              // toggleModal("login");
+              toggleSidebar("account");
+            }}
+          />
 
           <ButtonIcon
             name="shopping-cart"

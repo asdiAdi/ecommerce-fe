@@ -95,22 +95,6 @@ export default function Addresses(props: { data: AddressType[] }) {
         link={{ href: "/profile/addresses/add", label: "Add Address" }}
       />
 
-      {/*<div className="daisy-collapse w-full bg-base-100 shadow-sm">*/}
-      {/*  <input type="checkbox" />*/}
-      {/*  <div className="daisy-collapse-title flex flex-row justify-between">*/}
-      {/*    <div>Office</div>*/}
-      {/*    <div>Office</div>*/}
-      {/*    <div>Office</div>*/}
-      {/*    <div>Button A BUtton B</div>*/}
-      {/*  </div>*/}
-
-      {/*  <div className="daisy-collapse-content flex flex-row justify-between">*/}
-      {/*    <div>Office</div>*/}
-      {/*    <div>Office</div>*/}
-      {/*    <div>Office</div>*/}
-      {/*    <div>Button A BUtton B</div>*/}
-      {/*  </div>*/}
-      {/*</div>*/}
       <div className="flex w-full flex-col gap-4 rounded-lg">
         {data.map((address, index) => (
           <AddressCard key={`address-card-${index}`} data={address} />

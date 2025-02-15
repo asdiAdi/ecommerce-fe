@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getProductCart } from "@/api/product";
 import CartItem from "./CartItem";
+import { toggleModal } from "@/utils/modal";
 
 export default function SidebarCart(props: { children: ReactNode }) {
   const { children } = props;
@@ -55,7 +56,10 @@ export default function SidebarCart(props: { children: ReactNode }) {
             })}
           </ul>
 
-          <button className="daisy-btn bottom-0 w-full daisy-btn-primary">
+          <button
+            className="daisy-btn bottom-0 w-full daisy-btn-primary"
+            onClick={() => toggleModal("login")}
+          >
             {`Checkout Now ($${sum})`}
           </button>
           <button className="daisy-btn bottom-0 w-full daisy-btn-outline">

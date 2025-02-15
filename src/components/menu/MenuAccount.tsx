@@ -75,11 +75,18 @@ export default function MenuAccount(props: MenuAccountProps) {
         </Link>
       </li>
       <li>
-        <a className={cx({ "p-0 pr-2": isCompact })}>
+        <Link
+          href="/profile/payments"
+          className={cx({
+            "p-0 pr-2": isCompact,
+            "daisy-menu-active": pathname === "/profile/payments",
+          })}
+          onClick={() => toggle(null)}
+        >
           <TableIcon name="credit-card-outline" className="opacity-50" />{" "}
           Payment Methods
           <span className="daisy-badge border-0">4</span>
-        </a>
+        </Link>
       </li>
     </ul>
   );
