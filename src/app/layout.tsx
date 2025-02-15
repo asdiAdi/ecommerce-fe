@@ -40,9 +40,11 @@ export default function RootLayout({
           <ThemeProvider themes={THEMES}>
             <SidebarProvider>
               <NavbarProvider>
-                <main className="min-h-[calc(100vh-276px)] min-w-90">
-                  {/*calc screen - footer height - header -height*/}
-                  {children}
+                <main className="flex justify-center">
+                  <div className="min-h-[calc(100vh-276px)] w-full max-w-400 min-w-90">
+                    {/*calc screen - footer height - header -height*/}
+                    {children}
+                  </div>
                 </main>
                 <Footer />
               </NavbarProvider>

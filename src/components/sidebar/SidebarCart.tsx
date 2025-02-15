@@ -25,7 +25,7 @@ export default function SidebarCart(props: { children: ReactNode }) {
       toggle={() => toggle("cart")}
       position="right"
       className="flex flex-col justify-between gap-2 p-4"
-      isHiddenLarge={false}
+      isHidden={false}
       side={
         <>
           <div className="flex items-center border-b-1 pb-2">

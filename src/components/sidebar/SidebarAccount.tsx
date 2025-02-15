@@ -14,6 +14,7 @@ export default function SidebarAccount(props: { children: ReactNode }) {
       isOpen={isOpen === "account"}
       toggle={() => toggle("account")}
       side={<MenuAccount />}
+      isHidden="xl"
     >
       {children}
     </SidebarLayout>

@@ -6,7 +6,7 @@ type SidebarLayoutProps = ComponentPropsWithoutRef<"div"> & {
   toggle: () => void;
   side: ReactNode;
   position?: string;
-  isHiddenLarge?: boolean;
+  isHidden?: Size | false;
 };
 
 export default function SidebarLayout(props: SidebarLayoutProps) {
@@ -14,7 +14,7 @@ export default function SidebarLayout(props: SidebarLayoutProps) {
     isOpen,
     toggle,
     position = "left",
-    isHiddenLarge = true,
+    isHidden = "lg",
     side,
     children,
     className,
@@ -35,7 +35,11 @@ export default function SidebarLayout(props: SidebarLayoutProps) {
 
       <div className="daisy-drawer-content">{children}</div>
 
-      <div className={cx("daisy-drawer-side", { "lg:hidden": isHiddenLarge })}>
+      <div
+        className={cx("daisy-drawer-side", {
+          [`${isHidden}:hidden`]: isHidden,
+        })}
+      >
         <label
           aria-label="close sidebar"
           className="daisy-drawer-overlay"

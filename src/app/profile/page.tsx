@@ -1,35 +1,17 @@
 import Image from "next/image";
-import TableIcon from "@/components/core/TableIcon";
-import ButtonIcon from "@/components/core/ButtonIcon";
 import Avatar from "../../../public/placeholder/Avatar.png";
 import MenuAccount from "@/components/menu/MenuAccount";
+import ProfileHeader from "./_components/ProfileHeader";
 
-export default function Test() {
+export default function Profile() {
   return (
     <section className="mb-8 gap-6 p-6 xl:flex xl:flex-row">
       <div className="daisy-card hidden w-104 bg-base-100 shadow-sm xl:block">
         <MenuAccount className="daisy-card-body p-4" isCompact />
       </div>
       <div>
-        {/*MY PROFILE*/}
-        <div className="mb-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="h-fit w-fit rounded-lg bg-base-300">
-              <TableIcon name="user-filled" className="text-secondary" />
-            </div>
-            <h2 className="text-xl font-bold">My Profile</h2>
-          </div>
-          <div className="flex items-center gap-4">
-            <ButtonIcon name="menu-2" />
-            <button className="daisy-btn hidden daisy-btn-secondary daisy-btn-soft sm:block">
-              Edit Profile
-            </button>
-          </div>
-        </div>
-        <button className="daisy-btn mb-6 w-full daisy-btn-secondary daisy-btn-soft sm:hidden">
-          Edit Profile
-        </button>
-        {/*END MY PROFILE*/}
+        <ProfileHeader />
+
         <div className="mb-6 grid w-full grid-cols-2 grid-rows-2 gap-6 lg:grid-cols-4 xl:grid-cols-8 xl:grid-rows-1">
           {/* USER CARD */}
           <div className="daisy-card col-span-2 daisy-card-side w-full bg-base-100 px-8 py-4 shadow-sm daisy-card-md lg:row-span-2 xl:col-span-4 xl:row-span-1">
