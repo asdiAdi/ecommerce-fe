@@ -39,6 +39,13 @@ type PaymentMethodType = {
   expiry_date: string;
 };
 
+type OrderType = {
+  id: string;
+  status: OrderStatusKey;
+  delivery_date: string;
+  total_amount: number;
+};
+
 type CartType = Pick<ProductType, "img_url" | "title" | "price"> & {
   id: string;
   quantity: number;

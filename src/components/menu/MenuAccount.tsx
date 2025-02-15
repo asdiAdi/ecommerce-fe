@@ -23,10 +23,17 @@ export default function MenuAccount(props: MenuAccountProps) {
         Dashboard
       </li>
       <li>
-        <a className={cx({ "p-0 pr-2": isCompact })}>
+        <Link
+          href="/profile/orders"
+          className={cx({
+            "p-0 pr-2": isCompact,
+            "daisy-menu-active": pathname === "/profile/orders",
+          })}
+          onClick={() => toggle(null)}
+        >
           <TableIcon name="basket-outline" className="opacity-50" /> Orders
           <span className="daisy-badge border-0">5</span>
-        </a>
+        </Link>
       </li>
       <li>
         <a className={cx({ "p-0 pr-2": isCompact })}>

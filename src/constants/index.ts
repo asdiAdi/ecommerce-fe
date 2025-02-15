@@ -1,6 +1,9 @@
 import {
   CategoryKey,
+  Color,
+  ColorContent,
   CombinedCategories,
+  OrderStatusKey,
   SubCategoryKey,
 } from "@/types/constants";
 
@@ -73,3 +76,18 @@ export const COMBINED_CATEGORIES: CombinedCategories<SubCategoryKey> = {
   music: { sub_1: "Sub1" },
   health_beauty: { sub_1: "Sub1" },
 };
+
+export const ORDER_STATUS = {
+  pending: "Pending",
+  processing: "Processing",
+  delivered: "Delivered",
+  canceled: "Canceled",
+};
+
+export const ORDER_STATUS_COLOR: Record<OrderStatusKey, Color | ColorContent> =
+  {
+    pending: "neutral-content",
+    processing: "primary",
+    delivered: "success",
+    canceled: "error",
+  };

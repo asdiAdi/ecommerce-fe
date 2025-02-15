@@ -27,7 +27,7 @@ function PaymentCard(props: { data: PaymentMethodType }) {
 
   return (
     <div className="daisy-card w-full bg-base-100 shadow-sm">
-      <div className="daisy-card-content flex flex-row justify-between p-4">
+      <div className="daisy-card-content flex flex-row items-center justify-between p-4">
         <div className="flex items-center justify-between gap-2">
           {/*  TODO: proper colored icons */}
           <TableIcon name={card_type} />
@@ -60,7 +60,7 @@ export default function Payments(props: { data: PaymentMethodType[] }) {
 
       <div className="flex w-full flex-col gap-4 rounded-lg">
         {data.map((card, index) => (
-          <PaymentCard key={`address-card-${index}`} data={card} />
+          <PaymentCard key={`payment-card-${index}`} data={card} />
         ))}
       </div>
     </div>
