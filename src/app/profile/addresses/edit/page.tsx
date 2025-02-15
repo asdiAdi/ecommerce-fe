@@ -16,7 +16,7 @@ const MOCKDATA: AddressType = {
   description: "Malapit sa gate",
 };
 
-export default function AddressEdit(props: { data?: AddressType }) {
+export default function AddressEditPage(props: { data?: AddressType }) {
   const { data } = props;
   const [formData, setFormData] = useState<AddressType>(data ?? MOCKDATA);
   const {

@@ -4,7 +4,7 @@ import ProfileHeader from "@/app/profile/_components/ProfileHeader";
 import TableIcon from "@/components/core/TableIcon";
 import Image from "next/image";
 
-export default function OrderId() {
+export default function OrderIdPage() {
   const router = useParams();
 
   console.log(router);

@@ -47,7 +47,7 @@ function PaymentCard(props: { data: PaymentMethodType }) {
   );
 }
 
-export default function Payments(props: { data: PaymentMethodType[] }) {
+export default function PaymentsPage(props: { data: PaymentMethodType[] }) {
   const { data = MOCKDATA } = props;
 
   return (

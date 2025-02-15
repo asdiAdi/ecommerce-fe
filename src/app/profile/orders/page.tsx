@@ -39,7 +39,7 @@ function OrderCard(props: { data: OrderType }) {
   );
 }
 
-export default function Orders(props: { data: OrderType[] }) {
+export default function OrdersPage(props: { data: OrderType[] }) {
   const { data = [MOCKDATA] } = props;
 
   return (

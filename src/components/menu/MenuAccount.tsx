@@ -36,10 +36,17 @@ export default function MenuAccount(props: MenuAccountProps) {
         </Link>
       </li>
       <li>
-        <a className={cx({ "p-0 pr-2": isCompact })}>
+        <Link
+          href="/profile/wishlists"
+          className={cx({
+            "p-0 pr-2": isCompact,
+            "daisy-menu-active": pathname === "/profile/wishlists",
+          })}
+          onClick={() => toggle(null)}
+        >
           <TableIcon name="heart-outline" className="opacity-50" /> Wishlist
           <span className="daisy-badge border-0">19</span>
-        </a>
+        </Link>
       </li>
       {/*<li>
         <a className={cx({ "p-0 pr-2": isCompact })}>

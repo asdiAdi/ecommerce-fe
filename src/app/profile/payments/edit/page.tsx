@@ -13,7 +13,7 @@ const MOCKDATA: PaymentMethodType = {
   expiry_date: "2020-03-02",
 };
 
-export default function AddressEdit(props: { data?: PaymentMethodType }) {
+export default function PaymentsEditPage(props: { data?: PaymentMethodType }) {
   const { data } = props;
   const [formData, setFormData] = useState<PaymentMethodType>(data ?? MOCKDATA);
   const { name, card_number, cvc, expiry_date } = formData;

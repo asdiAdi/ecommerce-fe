@@ -6,10 +6,18 @@ import { useRouter } from "next/navigation";
 type ButtonIconProps = TableIconProps & {
   shape?: "circle" | "square";
   href?: string;
+  outline?: boolean;
 };
 
 export default function ButtonIcon(props: ButtonIconProps) {
-  const { onClick, href, shape = "square", className, ...rest } = props;
+  const {
+    onClick,
+    href,
+    outline = false,
+    shape = "square",
+    className,
+    ...rest
+  } = props;
   const router = useRouter();
 
   return (
@@ -19,6 +27,7 @@ export default function ButtonIcon(props: ButtonIconProps) {
         {
           "daisy-btn-square": shape === "square",
           "daisy-btn-circle": shape === "circle",
+          "daisy-btn-outline": outline,
         },
         className,
       )}

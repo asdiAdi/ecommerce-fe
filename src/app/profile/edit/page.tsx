@@ -20,7 +20,7 @@ const MOCKDATA = {
   birth_date: "2017-06-01",
 };
 
-export default function ProfileEdit(props: { data?: ProfileFormData }) {
+export default function ProfileEditPage(props: { data?: ProfileFormData }) {
   const { data } = props;
   const [formData, setFormData] = useState<ProfileFormData>(data ?? MOCKDATA);
   const { first_name, last_name, email, phone, birth_date } = formData;

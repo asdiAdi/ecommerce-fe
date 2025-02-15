@@ -84,7 +84,7 @@ function AddressCard(props: { data: AddressType }) {
   );
 }
 
-export default function Addresses(props: { data: AddressType[] }) {
+export default function AddressesPage(props: { data: AddressType[] }) {
   const { data = [MOCKDATA] } = props;
 
   return (
