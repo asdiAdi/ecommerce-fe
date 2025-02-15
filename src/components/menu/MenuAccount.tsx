@@ -41,13 +41,13 @@ export default function MenuAccount(props: MenuAccountProps) {
           <span className="daisy-badge border-0">19</span>
         </a>
       </li>
-      <li>
+      {/*<li>
         <a className={cx({ "p-0 pr-2": isCompact })}>
           <TableIcon name="headphones-outline" className="opacity-50" /> Support
           Tickets
           <span className="daisy-badge border-0">1</span>
         </a>
-      </li>
+      </li>*/}
 
       <li
         className={cx("mt-8 daisy-menu-title uppercase", {

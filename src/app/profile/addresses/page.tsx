@@ -31,7 +31,7 @@ function AddressCard(props: { data: AddressType }) {
 
   return (
     <div className="daisy-collapse w-full bg-base-100 shadow-sm">
-      <input type="checkbox" className="w-[calc(100%-100px)]!" />
+      <input type="checkbox" className="w-[calc(100%-140px)]!" />
       <div className="daisy-collapse-title flex flex-row justify-between pb-0">
         <div className="font-semibold">{name}</div>
 
