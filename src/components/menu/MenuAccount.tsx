@@ -3,6 +3,8 @@ import TableIcon from "@/components/core/TableIcon";
 import { ComponentPropsWithoutRef } from "react";
 import { cx } from "@/utils/common";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { useSidebar } from "@/components/sidebar/SidebarProvider";
 
 type MenuAccountProps = ComponentPropsWithoutRef<"ul"> & {
   isCompact?: boolean;
@@ -10,6 +12,8 @@ type MenuAccountProps = ComponentPropsWithoutRef<"ul"> & {
 
 export default function MenuAccount(props: MenuAccountProps) {
   const { className, isCompact = false, ...rest } = props;
+
+  const { toggle } = useSidebar();
 
   const pathname = usePathname();
 
@@ -46,20 +50,29 @@ export default function MenuAccount(props: MenuAccountProps) {
         Account Settings
       </li>
       <li>
-        <a
+        <Link
+          href="/profile"
           className={cx({
             "p-0 pr-2": isCompact,
             "daisy-menu-active": pathname === "/profile",
           })}
+          onClick={() => toggle(null)}
         >
           <TableIcon name="user-outline" className="opacity-50" /> Profile Info
-        </a>
+        </Link>
       </li>
       <li>
-        <a className={cx({ "p-0 pr-2": isCompact })}>
+        <Link
+          href="/profile/addresses"
+          className={cx({
+            "p-0 pr-2": isCompact,
+            "daisy-menu-active": pathname === "/profile/addresses",
+          })}
+          onClick={() => toggle(null)}
+        >
           <TableIcon name="map-pin-outline" className="opacity-50" /> Addresses
           <span className="daisy-badge border-0">16</span>
-        </a>
+        </Link>
       </li>
       <li>
         <a className={cx({ "p-0 pr-2": isCompact })}>

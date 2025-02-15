@@ -19,6 +19,18 @@ type ProductType = {
   category_name: string;
 };
 
+type AddressType = {
+  name: string;
+  address_line_1: string;
+  address_line_2?: string;
+  city: string;
+  state: string;
+  zip_code: string;
+  country: string;
+  phone_number: string;
+  description?: string;
+};
+
 type CartType = Pick<ProductType, "img_url" | "title" | "price"> & {
   id: string;
   quantity: number;
