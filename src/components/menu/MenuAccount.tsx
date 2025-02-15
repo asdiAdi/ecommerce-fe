@@ -1,6 +1,8 @@
+"use client";
 import TableIcon from "@/components/core/TableIcon";
 import { ComponentPropsWithoutRef } from "react";
 import { cx } from "@/utils/common";
+import { usePathname } from "next/navigation";
 
 type MenuAccountProps = ComponentPropsWithoutRef<"ul"> & {
   isCompact?: boolean;
@@ -8,6 +10,8 @@ type MenuAccountProps = ComponentPropsWithoutRef<"ul"> & {
 
 export default function MenuAccount(props: MenuAccountProps) {
   const { className, isCompact = false, ...rest } = props;
+
+  const pathname = usePathname();
 
   return (
     <ul className={cx("daisy-menu h-full w-full", className)} {...rest}>
@@ -42,7 +46,12 @@ export default function MenuAccount(props: MenuAccountProps) {
         Account Settings
       </li>
       <li>
-        <a className={cx({ "p-0 pr-2": isCompact })}>
+        <a
+          className={cx({
+            "p-0 pr-2": isCompact,
+            "daisy-menu-active": pathname === "/profile",
+          })}
+        >
           <TableIcon name="user-outline" className="opacity-50" /> Profile Info
         </a>
       </li>

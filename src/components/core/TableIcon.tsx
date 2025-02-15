@@ -58,8 +58,11 @@ export default function TableIcon(props: TableIconProps) {
         ssr: false,
         loading: () => (
           <div
-            className="daisy-skeleton bg-base-300"
-            style={{ width: dimension, height: dimension }}
+            className="m-1.5 box-content daisy-skeleton bg-base-300"
+            style={{
+              width: dimension,
+              height: dimension,
+            }}
           />
         ),
       }),

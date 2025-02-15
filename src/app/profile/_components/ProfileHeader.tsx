@@ -1,11 +1,21 @@
 "use client";
+import Link from "next/link";
 import TableIcon from "@/components/core/TableIcon";
 import ButtonIcon from "@/components/core/ButtonIcon";
 import { useSidebar } from "@/components/sidebar/SidebarProvider";
-import Link from "next/link";
 
-export default function ProfileHeader(props: { isEdit?: boolean }) {
-  const { isEdit = false } = props;
+type ProfileHeaderProps = {
+  iconName: string;
+  title: string;
+  link?: {
+    href: string;
+    label: string;
+  };
+};
+
+export default function ProfileHeader(props: ProfileHeaderProps) {
+  const { iconName, title, link } = props;
+
   const { toggle } = useSidebar();
 
   return (
@@ -13,9 +23,9 @@ export default function ProfileHeader(props: { isEdit?: boolean }) {
       <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <div className="h-fit w-fit rounded-lg bg-base-300">
-            <TableIcon name="user-filled" className="text-secondary" />
+            <TableIcon name={iconName} className="text-secondary" />
           </div>
-          <h2 className="text-xl font-bold">My Profile</h2>
+          <h2 className="text-xl font-bold">{title}</h2>
         </div>
         <div className="flex items-center gap-4">
           <ButtonIcon
@@ -23,18 +33,24 @@ export default function ProfileHeader(props: { isEdit?: boolean }) {
             onClick={() => toggle("account")}
             className="xl:hidden"
           />
-          <Link href={isEdit ? "/profile" : "/profile/edit"}>
-            <button className="daisy-btn hidden daisy-btn-secondary daisy-btn-soft sm:block">
-              {isEdit ? "Back To Profile" : "Edit Profile"}
-            </button>
-          </Link>
+
+          {link && (
+            <Link href={link.href}>
+              <button className="daisy-btn hidden daisy-btn-secondary daisy-btn-soft sm:block">
+                {link.label}
+              </button>
+            </Link>
+          )}
         </div>
       </div>
-      <Link href="/">
-        <button className="daisy-btn mb-6 w-full daisy-btn-secondary daisy-btn-soft sm:hidden">
-          Edit Profile
-        </button>
-      </Link>
+
+      {link && (
+        <Link href="/">
+          <button className="daisy-btn mb-6 w-full daisy-btn-secondary daisy-btn-soft sm:hidden">
+            {link.label}
+          </button>
+        </Link>
+      )}
     </>
   );
 }
