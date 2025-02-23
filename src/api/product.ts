@@ -1,4 +1,5 @@
 import { delay } from "@/utils/common";
+import { apiRequest } from "@/utils/crud";
 
 export const getTest = async () => {
   const data = await fetch("https://reqres.in/api/users/2");
@@ -33,4 +34,8 @@ export const getProductCart = async (): Promise<CartType[]> => {
       quantity: 4,
     },
   ];
+};
+
+export const getProducts = async () => {
+  return await apiRequest<ProductType[]>("GET", "products");
 };

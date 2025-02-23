@@ -5,15 +5,19 @@ type Dimension = {
   height: number;
 };
 
+// {
+//   "category_id": "5376f6aa-3093-4619-8451-f4a3e415b5c3"
+// }
 type ProductType = {
   asin: string;
   title: string;
   description: string;
   img_url: string;
   product_url: string;
-  stars: number;
-  reviews: number;
-  price: number;
+  stars: number | string; // should have function to autoconvert all this to num
+  reviews: number | string; // TODO: use zod next time?
+  price: number | string;
+  stock: number | string;
   is_best_seller: boolean;
   bought_in_last_month: boolean;
   category_name: string;
