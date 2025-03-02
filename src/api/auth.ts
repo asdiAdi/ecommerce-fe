@@ -4,19 +4,17 @@ import {
   UpdateUserType,
   UserSchema,
 } from "@/schemas/UserSchema";
-import { LoginSchema, LoginType, TokenSchema } from "@/schemas/LoginSchema";
+import { LoginSchema, TokenSchema } from "@/schemas/LoginSchema";
 
-export const postSignup = async (payload: LoginType) => {
-  const validatedPayload = LoginSchema.parse(payload);
+export const postSignup = async (payload: FormData) => {
+  const validatedPayload = LoginSchema.parse(Object.fromEntries(payload));
   const res = await apiRequest("POST", "/auth/signup", validatedPayload);
-
   return TokenSchema.parse(res);
 };
 
-export const postLogin = async (payload: LoginType) => {
-  const validatedPayload = LoginSchema.parse(payload);
+export const postLogin = async (payload: FormData) => {
+  const validatedPayload = LoginSchema.parse(Object.fromEntries(payload));
   const res = await apiRequest("POST", "/auth/login", validatedPayload);
-
   return TokenSchema.parse(res);
 };
 

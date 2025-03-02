@@ -2,10 +2,12 @@ import TableIcon from "@/components/core/TableIcon";
 import { ComponentPropsWithoutRef } from "react";
 import { cx } from "@/utils/common";
 
-type UsernameProps = ComponentPropsWithoutRef<"div">;
+type UsernameProps = ComponentPropsWithoutRef<"div"> & {
+  name?: string;
+};
 
 export default function Username(props: UsernameProps) {
-  const { className, ...rest } = props;
+  const { className, name = "username", ...rest } = props;
 
   return (
     <div className={cx("w-full", className)} {...rest}>
@@ -19,6 +21,7 @@ export default function Username(props: UsernameProps) {
           pattern="[A-Za-z][A-Za-z0-9\-]*"
           minLength={3}
           maxLength={20}
+          name={name}
           title="Only letters, numbers or dash"
         />
       </label>

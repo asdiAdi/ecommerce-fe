@@ -2,6 +2,10 @@ export const toggleModal = (id: string) => {
   const element = document.getElementById(id) as HTMLDialogElement | null;
 
   if (element) {
-    element.showModal();
+    if (element.open) {
+      element.close();
+    } else {
+      element.showModal();
+    }
   }
 };

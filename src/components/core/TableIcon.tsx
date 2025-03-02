@@ -38,7 +38,7 @@ const sizeToDimension = (size: TableIconProps["size"]): number => {
       num = 36;
       break;
     default:
-      num = size ?? 28;
+      num = size || 28;
   }
   return num;
 };
@@ -96,14 +96,14 @@ export default function TableIcon(props: TableIconProps) {
 // return (
 //   <Image
 //     src={`${theme === "light" ? "/icons" : "/icons-dark"}/${name}.svg`}
-//     alt={alt ?? `${name}-icon`}
+//     alt={alt || `${name}-icon`}
 //     className={cx(
 //       "p-1.5 box-content rounded-md text-blue-500",
 //       [(onClick || href) && "cursor-pointer hover:bg-gray-100 "],
 //       className,
 //     )}
-//     width={width ?? sizeToDimension(size).width}
-//     height={height ?? sizeToDimension(size).height}
+//     width={width || sizeToDimension(size).width}
+//     height={height || sizeToDimension(size).height}
 //     priority={true}
 //     unoptimized={true}
 //     onClick={() => {

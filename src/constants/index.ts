@@ -91,3 +91,9 @@ export const ORDER_STATUS_COLOR: Record<OrderStatusKey, Color | ColorContent> =
     delivered: "success",
     canceled: "error",
   };
+
+export const VALIDATOR_HINT = {
+  required: "Required",
+  phone: "Enter valid phone number",
+  email: "Enter valid email address",
+};

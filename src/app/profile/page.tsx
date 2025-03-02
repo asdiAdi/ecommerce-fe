@@ -1,8 +1,23 @@
+"use client";
 import Image from "next/image";
 import Avatar from "../../../public/placeholder/Avatar.png";
 import ProfileHeader from "./_components/ProfileHeader";
+import { useQuery } from "@tanstack/react-query";
+import { getUser } from "@/api/auth";
 
+// TODO: SSR
 export default function Profile() {
+  const { data } = useQuery({
+    queryKey: ["userProfile"],
+    queryFn: () => getUser(),
+  });
+
+  const { avatar, first_name, last_name, email, phone, birthdate } = data || {};
+
+  const fullName =
+    first_name || last_name ? `${first_name || ""} ${last_name || ""}` : "N/A";
+  const birth = birthdate || "N/A";
+
   return (
     <div className="w-full">
       <ProfileHeader
@@ -16,11 +31,11 @@ export default function Profile() {
         <div className="daisy-card col-span-2 daisy-card-side w-full bg-base-100 px-8 py-4 shadow-sm daisy-card-md lg:row-span-2 xl:col-span-4 xl:row-span-1">
           <figure className="daisy-avatar">
             <div className="h-fit w-24 rounded-full">
-              <Image src={Avatar} alt="Movie" />
+              <Image src={avatar || Avatar} alt="Movie" />
             </div>
           </figure>
           <div className="daisy-card-body place-self-center">
-            <h2 className="daisy-card-title">Nick Dubuque</h2>
+            <h2 className="daisy-card-title">{fullName}</h2>
             <p>
               <span className="opacity-50">Balance: </span>
               <span className="text-secondary opacity-100">$5,000.00</span>
@@ -58,23 +73,23 @@ export default function Profile() {
         <ul className="daisy-card-body justify-between lg:flex-row lg:justify-around">
           <li className="flex flex-col items-start gap-1">
             <span className="font-semibold opacity-50">First Name</span>
-            <span>Nick</span>
+            <span>{first_name || "N/A"}</span>
           </li>
           <li className="flex flex-col items-start gap-1">
             <span className="font-semibold opacity-50">Last Name</span>
-            <span>DuBuque</span>
+            <span>{last_name || "N/A"}</span>
           </li>
           <li className="flex flex-col items-start gap-1">
             <span className="font-semibold opacity-50">Email Name</span>
-            <span>Jayden.Gislason78@gmail.com</span>
+            <span>{email || "N/A"}</span>
           </li>
           <li className="flex flex-col items-start gap-1">
             <span className="font-semibold opacity-50">Phone</span>
-            <span>(445) 653-3771 x985</span>
+            <span>{phone || "N/A"}</span>
           </li>
           <li className="flex flex-col items-start gap-1">
             <span className="font-semibold opacity-50">Birth date</span>
-            <span>25 Apr, 1996</span>
+            <span>{birth}</span>
           </li>
         </ul>
       </div>

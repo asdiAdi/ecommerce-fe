@@ -1,4 +1,4 @@
-import { apiRequest, makeSearchParams, QueryType } from "@/utils/crud";
+import { apiRequest, makeSearchParams } from "@/utils/crud";
 import {
   AddressSchema,
   CreateAddressSchema,
@@ -8,10 +8,15 @@ import {
 } from "@/schemas/AddressSchema";
 import { PaginatedResponseSchema } from "@/schemas/MetaSchema";
 
-export const getAddresses = async (query: QueryType) => {
+export const getAddress = async (id: string) => {
+  const res = await apiRequest("GET", `/address/${id}`);
+  return AddressSchema.parse(res);
+};
+
+export const getAddresses = async (query?: URLSearchParams) => {
   const endpoint = makeSearchParams("/addresses", query);
   const res = await apiRequest("GET", endpoint);
-  return PaginatedResponseSchema(AddressSchema).array().parse(res);
+  return PaginatedResponseSchema(AddressSchema.array()).parse(res);
 };
 
 export const postAddress = async (payload: CreateAddressType) => {

@@ -1,14 +1,15 @@
 import { ReactNode } from "react";
-import { CATEGORIES, CATEGORY_KEYS, COMBINED_CATEGORIES } from "@/constants";
 import { cx } from "@/utils/common";
-import { SubCategoryKey } from "@/types/constants";
 import SidebarLayout from "@/components/sidebar/SidebarLayout";
 import { useSidebar } from "@/components/sidebar/SidebarProvider";
+import useCategoryStore from "@/stores/categoryStore";
+import Link from "next/link";
 
 export default function SidebarCategory(props: { children: ReactNode }) {
   const { children } = props;
 
   const { isOpen, toggle } = useSidebar();
+  const categories = useCategoryStore((state) => state.categories);
 
   return (
     <SidebarLayout
@@ -17,18 +18,23 @@ export default function SidebarCategory(props: { children: ReactNode }) {
       className={cx("daisy-join-vertical daisy-join bg-base-100")}
       side={
         <ul className="daisy-menu h-full w-full">
-          {CATEGORY_KEYS.map((key) => {
-            const subKeys = Object.keys(
-              COMBINED_CATEGORIES[key],
-            ) as SubCategoryKey[];
+          {categories.map(({ name, subcategories }) => {
             return (
-              <li key={`sidebar-category-${key}`}>
+              <li key={`sidebar-category-${name}`}>
                 <details open>
-                  <summary>{CATEGORIES[key]}</summary>
+                  <summary>{name}</summary>
                   <ul>
-                    {subKeys.map((subKey) => (
-                      <li key={`sidebar-sub-category-${subKey}`}>
-                        <a>{COMBINED_CATEGORIES[key][subKey]}</a>
+                    {subcategories?.map((subCategory) => (
+                      <li key={`sidebar-sub-category-${subCategory.name}`}>
+                        <Link
+                          href={{
+                            pathname: "/",
+                            query: { category_name: subCategory.name },
+                          }}
+                          onClick={() => toggle(null)}
+                        >
+                          {subCategory.name}
+                        </Link>
                       </li>
                     ))}
                   </ul>

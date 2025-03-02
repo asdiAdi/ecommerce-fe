@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { CategorySchema } from "@/schemas/CategorySchema";
 
 export const ProductSchema = z.object({
   asin: z.string(),
@@ -13,7 +12,6 @@ export const ProductSchema = z.object({
   stock: z.coerce.number(),
   is_best_seller: z.coerce.boolean(),
   bought_in_last_month: z.coerce.number(),
-  category: CategorySchema,
 });
 
 export type ProductType = z.infer<typeof ProductSchema>;

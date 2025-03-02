@@ -2,23 +2,27 @@ import BasketOutline from "../../../public/icons/basket-outline";
 import SidebarLayout from "@/components/sidebar/SidebarLayout";
 import { useSidebar } from "@/components/sidebar/SidebarProvider";
 import { ReactNode } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getProductCart } from "@/api/product";
+import { useMutation } from "@tanstack/react-query";
 import CartItem from "./CartItem";
 import { toggleModal } from "@/utils/modal";
+import { postCartItems } from "@/api/cart";
 
 export default function SidebarCart(props: { children: ReactNode }) {
   const { children } = props;
 
-  const { isOpen, toggle } = useSidebar();
+  const { isOpen, toggle, refetchCart, cartData } = useSidebar();
 
-  const { data } = useQuery({
-    queryKey: ["cart"],
-    queryFn: getProductCart,
+  const { mutate } = useMutation({
+    mutationFn: postCartItems,
+    onSuccess: () => refetchCart(),
   });
 
-  const sum = data?.reduce((prev, { price }) => prev + price, 0) ?? 0;
-  const cartNum = data?.length ?? 0;
+  const { data } = cartData || {};
+
+  const sum =
+    data?.reduce((prev, { product }) => prev + product.price, 0).toFixed(2) ||
+    0;
+  const cartNum = data?.length || 0;
 
   return (
     <SidebarLayout
@@ -45,12 +49,7 @@ export default function SidebarCart(props: { children: ReactNode }) {
                   key={`card-cart-${index}`}
                   className="daisy-list-row grid-cols-none px-0"
                 >
-                  <CartItem
-                    data={product}
-                    onIncrement={() => {}}
-                    onDecrement={() => {}}
-                    onRemove={() => {}}
-                  />
+                  <CartItem data={product} mutate={mutate} />
                 </li>
               );
             })}

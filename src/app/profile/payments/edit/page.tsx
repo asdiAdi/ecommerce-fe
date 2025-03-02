@@ -1,13 +1,13 @@
 "use client";
 import ProfileHeader from "../../_components/ProfileHeader";
 import { ChangeEvent, useState } from "react";
+import { toast } from "react-toastify";
 
 // TODO edit to address data
 
 const MOCKDATA: PaymentMethodType = {
   name: "Bahay",
   card_type: "paypal",
-  cvc: "1",
 
   card_number: "0123456789",
   expiry_date: "2020-03-02",
@@ -15,8 +15,8 @@ const MOCKDATA: PaymentMethodType = {
 
 export default function PaymentsEditPage(props: { data?: PaymentMethodType }) {
   const { data } = props;
-  const [formData, setFormData] = useState<PaymentMethodType>(data ?? MOCKDATA);
-  const { name, card_number, cvc, expiry_date } = formData;
+  const [formData, setFormData] = useState<PaymentMethodType>(data || MOCKDATA);
+  const { name, card_number, expiry_date } = formData;
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -74,7 +74,7 @@ export default function PaymentsEditPage(props: { data?: PaymentMethodType }) {
             />
           </fieldset>
 
-          <fieldset className="daisy-fieldset">
+          {/*<fieldset className="daisy-fieldset">
             <legend className="daisy-fieldset-legend pb-0">CVC</legend>
             <input
               type="text"
@@ -84,11 +84,14 @@ export default function PaymentsEditPage(props: { data?: PaymentMethodType }) {
               name="cvc"
               onChange={handleOnChange}
             />
-          </fieldset>
+          </fieldset>*/}
 
           <button
             className="daisy-btn mt-4 w-fit daisy-btn-primary lg:col-span-2"
             type="submit"
+            onClick={() => {
+              toast.error("TODO: Stripe Integration");
+            }}
           >
             Save Changes
           </button>

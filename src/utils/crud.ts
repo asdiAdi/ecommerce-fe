@@ -1,30 +1,31 @@
 import { API_URL } from "@/constants/env";
 import { MetaQueryType } from "@/schemas/MetaSchema";
+import { getCookie } from "@/utils/cookies";
 
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
 
 type PayloadValues = string | number | boolean | null | undefined | Date;
 
-export type QueryType<T extends MetaQueryType = {}> = T;
+export type QueryType<T extends MetaQueryType = object> = T;
 
-export const makeSearchParams = <T extends MetaQueryType>(
-  endpoint: string,
-  query: T,
-) => {
+export const makeSearchParams = (endpoint: string, query?: URLSearchParams) => {
+  if (!query) return endpoint;
+
   // Build query string for GET requests
-  const queryString = new URLSearchParams(
-    Object.entries(query).reduce(
-      (acc, [key, value]) => {
-        if (value !== undefined && value !== null) {
-          acc[key] = String(value); // Convert all values to strings
-        }
-        return acc;
-      },
-      {} as Record<string, string>,
-    ),
-  ).toString();
+  // const queryString = new URLSearchParams(
+  //   Object.entries(query).reduce(
+  //     (acc, [key, value]) => {
+  //       if (value !== undefined && value !== null) {
+  //         acc[key] = String(value); // Convert all values to strings
+  //       }
+  //       return acc;
+  //     },
+  //     {} as Record<string, string>,
+  //   ),
+  // ).toString();
 
-  return `/${endpoint}${queryString ? `?${queryString}` : ""}`;
+  const queryString = query.toString();
+  return `${endpoint}${queryString ? `?${queryString}` : ""}`;
 };
 
 export const apiRequest = async (
@@ -33,12 +34,14 @@ export const apiRequest = async (
   payload?: Record<string, PayloadValues | Array<PayloadValues>>,
   options?: RequestInit,
 ) => {
-  const url = `${API_URL}/${endpoint}`;
+  const url = `${API_URL}${endpoint}`;
+  const token = getCookie("token");
 
   const _options: RequestInit = {
     method,
     headers: {
       "Content-Type": "application/json",
+      ...(token && { Authorization: `Bearer ${token}` }),
     },
     ...options,
   };

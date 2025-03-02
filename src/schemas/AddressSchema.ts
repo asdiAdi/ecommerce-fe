@@ -4,13 +4,13 @@ export const AddressSchema = z.object({
   id: z.string(),
   name: z.string(),
   address_line_1: z.string(),
-  address_line_2: z.string().optional(),
+  address_line_2: z.string().nullable().optional(),
   city: z.string(),
   state: z.string(),
   zip_code: z.string(),
   country: z.string(),
   phone_number: z.string(),
-  description: z.string().optional(),
+  description: z.string().nullable().optional(),
 });
 
 export const CreateAddressSchema = AddressSchema.omit({ id: true });

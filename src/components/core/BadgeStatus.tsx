@@ -9,7 +9,7 @@ type BadgeStatusProps = ComponentPropsWithoutRef<"div"> & {
 
 export default function BadgeStatus(props: BadgeStatusProps) {
   const { color, status, className, ...rest } = props;
-  console.log(color);
+
   return (
     <div
       className={cx(

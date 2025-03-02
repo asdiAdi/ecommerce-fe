@@ -21,7 +21,6 @@ type PaymentMethodType = {
   name: string;
   card_number: string;
   card_type: "mastercard" | "visa" | "paypal";
-  cvc: string;
   expiry_date: string;
 };
 

@@ -5,6 +5,7 @@ import { cx } from "@/utils/common";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useSidebar } from "@/components/sidebar/SidebarProvider";
+import { useAuthStore } from "@/stores/authStore";
 
 type MenuAccountProps = ComponentPropsWithoutRef<"ul"> & {
   isCompact?: boolean;
@@ -16,6 +17,8 @@ export default function MenuAccount(props: MenuAccountProps) {
   const { toggle } = useSidebar();
 
   const pathname = usePathname();
+
+  const logout = useAuthStore((state) => state.logout);
 
   return (
     <ul className={cx("daisy-menu h-full w-full", className)} {...rest}>
@@ -99,7 +102,27 @@ export default function MenuAccount(props: MenuAccountProps) {
         >
           <TableIcon name="credit-card-outline" className="opacity-50" />{" "}
           Payment Methods
-          <span className="daisy-badge border-0">4</span>
+          <span className="daisy-badge border-0">2</span>
+        </Link>
+      </li>
+
+      <li
+        className={cx("mt-8 uppercase", {
+          "mt-4 py-0": isCompact,
+        })}
+      />
+      <li>
+        <Link
+          href="/"
+          className={cx({
+            "mt-8 p-0 pr-2": isCompact,
+          })}
+          onClick={() => {
+            toggle(null);
+            logout();
+          }}
+        >
+          <TableIcon name="user-outline" className="opacity-50" /> Logout
         </Link>
       </li>
     </ul>

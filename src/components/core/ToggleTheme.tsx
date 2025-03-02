@@ -21,7 +21,7 @@ export default function ToggleTheme(props: ToggleThemeProps) {
         className: "theme-controller",
         value: theme,
         onClick: () =>
-          setTheme(props.theme ?? (theme === "dark" ? "light" : "dark")),
+          setTheme(props.theme || (theme === "dark" ? "light" : "dark")),
       }}
     />
   );

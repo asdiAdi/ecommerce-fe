@@ -2,27 +2,28 @@ import Image from "next/image";
 import { ComponentPropsWithoutRef } from "react";
 import { twSizeToPx } from "@/utils/common";
 import ButtonIcon from "@/components/core/ButtonIcon";
+import { CartType, UpdateCartType } from "@/schemas/CartSchema";
 
 type CartItemProps = ComponentPropsWithoutRef<"div"> & {
   data: CartType;
-  onIncrement: (id: string) => void;
-  onDecrement: (id: string) => void;
-  onRemove: (id: string) => void;
+  mutate: (arg: UpdateCartType) => void;
 };
 
 export default function CartItem(props: CartItemProps) {
-  const { data, onIncrement, onDecrement, onRemove } = props;
-  const { id, img_url, quantity, price, title } = data;
+  const { data, mutate } = props;
+  const { product_asin, quantity, product } = data;
+  const { img_url, price, title } = product;
 
   return (
     <div className="grid grid-cols-12 grid-rows-2">
-      <div className="col-span-3 row-span-2 flex size-20 max-w-20 min-w-fit items-center justify-between place-self-center">
+      <div className="col-span-3 row-span-2 flex size-20 max-w-20 min-w-fit items-center justify-center place-self-center overflow-hidden">
         <Image
-          src={img_url}
+          src={img_url.split("._AC_")[0] + "._AC_UL320_.jpg"}
           width={twSizeToPx(20)}
           height={twSizeToPx(20)}
           alt="Movie"
           className="rounded-lg"
+          style={{ height: twSizeToPx(20), width: "auto" }}
         />
       </div>
 
@@ -35,14 +36,26 @@ export default function CartItem(props: CartItemProps) {
         <ButtonIcon
           name="plus"
           size="2xs"
-          onClick={() => onIncrement(id)}
+          onClick={() =>
+            mutate({
+              quantity: 1,
+              product_asin: product_asin,
+              operation: "add",
+            })
+          }
           className="bg-base-300"
         />
         <p>{quantity}</p>
         <ButtonIcon
           name="minus"
           size="2xs"
-          onClick={() => onDecrement(id)}
+          onClick={() =>
+            mutate({
+              quantity: 1,
+              product_asin: product_asin,
+              operation: "subtract",
+            })
+          }
           className="bg-base-300"
         />
       </div>
@@ -51,7 +64,13 @@ export default function CartItem(props: CartItemProps) {
         name="x"
         size="2xs"
         className="col-start-12 row-span-2 self-center justify-self-end opacity-50"
-        onClick={() => onRemove(id)}
+        onClick={() =>
+          mutate({
+            quantity: 100,
+            product_asin: product_asin,
+            operation: "subtract",
+          })
+        }
       />
     </div>
   );

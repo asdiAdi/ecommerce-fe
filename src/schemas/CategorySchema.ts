@@ -1,9 +1,15 @@
 import { z } from "zod";
 
-export const CategorySchema = z.object({
+const BaseCategorySchema = z.object({
   id: z.string(),
-  parent_id: z.string().nullable(),
   name: z.string(),
 });
 
-export type CategoryType = z.infer<typeof CategorySchema>;
+export type CategoryType = z.infer<typeof BaseCategorySchema> & {
+  subcategories?: CategoryType[];
+};
+
+export const CategorySchema: z.ZodType<CategoryType> =
+  BaseCategorySchema.extend({
+    subcategories: z.lazy(() => CategorySchema.array()).optional(),
+  });

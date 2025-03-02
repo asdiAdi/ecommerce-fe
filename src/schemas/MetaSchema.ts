@@ -25,3 +25,8 @@ export const PaginatedResponseSchema = <T extends z.ZodTypeAny>(schema: T) =>
 export type MetaType = z.infer<typeof MetaSchema>;
 export type MetaQueryType = z.infer<typeof MetaQuerySchema>;
 export type ExtendedMetaQueryType<T extends MetaQueryType = MetaQueryType> = T;
+
+export type PaginatedType<T, K extends MetaQueryType = MetaQueryType> = {
+  data: T;
+  meta: K;
+};

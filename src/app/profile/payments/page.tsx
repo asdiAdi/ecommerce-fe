@@ -1,21 +1,21 @@
+"use client";
 import ProfileHeader from "../_components/ProfileHeader";
 import ButtonIcon from "@/components/core/ButtonIcon";
 import Link from "next/link";
 import TableIcon from "@/components/core/TableIcon";
+import { toast } from "react-toastify";
 
 const MOCKDATA: PaymentMethodType[] = [
   {
     name: "Bahay",
     card_type: "paypal",
     card_number: "0123456789",
-    cvc: "1",
     expiry_date: "2020-03-02",
   },
   {
     name: "Kubo",
     card_type: "visa",
     card_number: "0123456789",
-    cvc: "1",
     expiry_date: "2020-03-02",
   },
 ];
@@ -36,7 +36,7 @@ function PaymentCard(props: { data: PaymentMethodType }) {
         <div>{card_number}</div>
         <div>{expiry_date}</div>
 
-        <div className="opacity-50">
+        <div>
           <Link href={`/profile/payments/edit`}>
             <ButtonIcon name="edit" size="xs" className="mr-2 bg-base-300" />
           </Link>
@@ -55,7 +55,12 @@ export default function PaymentsPage(props: { data: PaymentMethodType[] }) {
       <ProfileHeader
         iconName="credit-card-outline"
         title="Payment Methods"
-        link={{ href: "/profile/payments/add", label: "Add Payment Method" }}
+        link={{
+          href: () => {
+            toast.error("TODO: Stripe integration");
+          },
+          label: "Add Payment Method",
+        }}
       />
 
       <div className="flex w-full flex-col gap-4 rounded-lg">

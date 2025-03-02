@@ -7,7 +7,6 @@ import Image from "next/image";
 export default function OrderIdPage() {
   const router = useParams();
 
-  console.log(router);
   return (
     <div className="w-full">
       <ProfileHeader

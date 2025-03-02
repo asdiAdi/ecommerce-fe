@@ -13,6 +13,6 @@ export const UpdateCartSchema = z.object({
   operation: z.enum(["add", "subtract"]),
 });
 
-export type CartSchema = z.infer<typeof CartSchema>;
+export type CartType = z.infer<typeof CartSchema>;
 
 export type UpdateCartType = z.infer<typeof UpdateCartSchema>;

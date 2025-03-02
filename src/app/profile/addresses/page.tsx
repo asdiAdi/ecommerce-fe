@@ -1,23 +1,20 @@
+"use client";
 import ProfileHeader from "../_components/ProfileHeader";
 import ButtonIcon from "@/components/core/ButtonIcon";
 import Link from "next/link";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { deleteAddress, getAddresses, postAddress } from "@/api/address";
+import { AddressType } from "@/schemas/AddressSchema";
+import { toast } from "react-toastify";
 
-const MOCKDATA: AddressType = {
-  name: "Bahay",
-  address_line_1: "9th St",
-  address_line_2: undefined,
-  city: "Caloocan",
-  state: "Metro Manila",
-  zip_code: "1400",
-  country: "Philippines",
-  phone_number: "(02) 361 7435",
-  description: "Malapit sa gate",
-};
-
-function AddressCard(props: { data: AddressType }) {
-  const { data } = props;
+function AddressCard(props: {
+  data: AddressType;
+  onDelete: (id: string) => void;
+}) {
+  const { data, onDelete } = props;
 
   const {
+    id,
     name,
     address_line_1,
     address_line_2,
@@ -36,11 +33,16 @@ function AddressCard(props: { data: AddressType }) {
         <div className="font-semibold">{name}</div>
 
         <div>{phone_number}</div>
-        <div className="opacity-50">
-          <Link href={`/profile/addresses/edit`}>
+        <div>
+          <Link href={`/profile/addresses/edit/${id}`}>
             <ButtonIcon name="edit" size="xs" className="mr-2 bg-base-300" />
           </Link>
-          <ButtonIcon name="trash-filled" size="xs" className="bg-base-300" />
+          <ButtonIcon
+            name="trash-filled"
+            size="xs"
+            className="bg-base-300"
+            onClick={() => onDelete(id)}
+          />
         </div>
       </div>
 
@@ -52,7 +54,7 @@ function AddressCard(props: { data: AddressType }) {
 
         <div className="mb-4">
           <label className="daisy-label text-sm">Address Line 2</label>
-          <p className="ml-2">{address_line_2 ?? "N/A"}</p>
+          <p className="ml-2">{address_line_2 || "N/A"}</p>
         </div>
 
         <div className="mb-4">
@@ -84,8 +86,19 @@ function AddressCard(props: { data: AddressType }) {
   );
 }
 
-export default function AddressesPage(props: { data: AddressType[] }) {
-  const { data = [MOCKDATA] } = props;
+export default function AddressesPage() {
+  const { data, refetch } = useQuery({
+    queryKey: ["userAddress"],
+    queryFn: () => getAddresses(),
+  });
+
+  const { mutate: onDelete } = useMutation({
+    mutationFn: deleteAddress,
+    onSuccess: () => {
+      void refetch();
+      toast.success("Deleted Address Successfully!");
+    },
+  });
 
   return (
     <div className="w-full">
@@ -96,8 +109,12 @@ export default function AddressesPage(props: { data: AddressType[] }) {
       />
 
       <div className="flex w-full flex-col gap-4 rounded-lg">
-        {data.map((address, index) => (
-          <AddressCard key={`address-card-${index}`} data={address} />
+        {data?.data?.map((address, index) => (
+          <AddressCard
+            key={`address-card-${index}`}
+            data={address}
+            onDelete={onDelete}
+          />
         ))}
       </div>
     </div>

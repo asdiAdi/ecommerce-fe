@@ -9,10 +9,18 @@ import DropdownCategory from "@/components/dropdown/DropdownCategory";
 import { toggleModal } from "@/utils/modal";
 import ModalLogin from "@/components/modal/ModalLogin";
 import ButtonIcon from "@/components/core/ButtonIcon";
+import { useAuthStore } from "@/stores/authStore";
+import { cx } from "@/utils/common";
 
 export default function NavbarLayout() {
-  const { isOpen: isOpenSidebar, toggle: toggleSidebar } = useSidebar();
+  const {
+    isOpen: isOpenSidebar,
+    toggle: toggleSidebar,
+    cartData,
+  } = useSidebar();
   const { isOpen: isOpenNavbar, toggle: toggleNavbar } = useNavbar();
+
+  const isAuth = useAuthStore((state) => state.isAuth);
 
   return (
     <nav
@@ -71,19 +79,44 @@ export default function NavbarLayout() {
 
           <ButtonIcon
             name="user-circle"
+            className="xl:hidden"
             onClick={() => {
-              // toggleModal("login");
-              toggleSidebar("account");
+              if (isAuth) {
+                toggleSidebar("account");
+              } else {
+                toggleModal("login");
+              }
             }}
           />
 
           <ButtonIcon
-            name="shopping-cart"
+            name="user-circle"
+            className="hidden xl:block"
+            href={isAuth ? "/profile" : undefined}
             onClick={() => {
-              toggleNavbar(false);
-              toggleSidebar("cart");
+              if (!isAuth) {
+                toggleModal("login");
+              }
             }}
           />
+
+          <div className="daisy-indicator">
+            <span
+              className={cx(
+                "daisy-indicator-item top-2 right-0.5 daisy-badge p-0.5 text-sm leading-1 daisy-badge-secondary",
+                { hidden: cartData?.data.length === 0 || false },
+              )}
+            >
+              {cartData?.data.length || 0}
+            </span>
+            <ButtonIcon
+              name="shopping-cart"
+              onClick={() => {
+                toggleNavbar(false);
+                toggleSidebar("cart");
+              }}
+            />
+          </div>
         </div>
       </div>
       <div

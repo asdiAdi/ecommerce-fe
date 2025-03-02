@@ -1,4 +1,4 @@
-import { MetaQueryType, PaginatedResponseSchema } from "@/schemas/MetaSchema";
+import { PaginatedResponseSchema } from "@/schemas/MetaSchema";
 import { apiRequest, makeSearchParams } from "@/utils/crud";
 import {
   CartSchema,
@@ -6,15 +6,13 @@ import {
   UpdateCartType,
 } from "@/schemas/CartSchema";
 
-export const getCartItems = async (query: MetaQueryType) => {
-  const endpoint = makeSearchParams("/cart", query);
-  const res = await apiRequest("GET", endpoint);
-
-  return PaginatedResponseSchema(CartSchema).array().parse(res);
+export const getCartItems = async (query?: URLSearchParams) => {
+  const res = await apiRequest("GET", makeSearchParams("/cart", query));
+  return PaginatedResponseSchema(CartSchema.array()).parse(res);
 };
 
-export const putCartItems = async (payload: UpdateCartType) => {
+export const postCartItems = async (payload: UpdateCartType) => {
   const validatedPayload = UpdateCartSchema.parse(payload);
-  await apiRequest("PUT", "/cart", validatedPayload);
+  await apiRequest("POST", "/cart", validatedPayload);
   return true;
 };

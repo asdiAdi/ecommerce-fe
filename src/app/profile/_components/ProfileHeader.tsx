@@ -8,7 +8,7 @@ type ProfileHeaderProps = {
   iconName: string;
   title: string;
   link?: {
-    href: string;
+    href: (() => void) | string;
     label: string;
   };
 };
@@ -16,6 +16,7 @@ type ProfileHeaderProps = {
 export default function ProfileHeader(props: ProfileHeaderProps) {
   const { iconName, title, link } = props;
 
+  const { href, label } = link || {};
   const { toggle } = useSidebar();
 
   return (
@@ -35,11 +36,13 @@ export default function ProfileHeader(props: ProfileHeaderProps) {
           />
 
           {link && (
-            <Link href={link.href}>
-              <button className="daisy-btn hidden daisy-btn-secondary daisy-btn-soft sm:block">
-                {link.label}
-              </button>
-            </Link>
+            <button className="daisy-btn hidden daisy-btn-secondary daisy-btn-soft sm:block">
+              {typeof href === "string" ? (
+                <Link href={href}>{label}</Link>
+              ) : (
+                <span onClick={() => href && href()}>{label}</span>
+              )}
+            </button>
           )}
         </div>
       </div>

@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export const LoginSchema = z.object({
-  username: z.string(),
-  password: z.string(),
+  username: z.coerce.string(),
+  password: z.coerce.string(),
 });
 
 export const TokenSchema = z.object({

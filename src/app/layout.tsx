@@ -7,6 +7,7 @@ import SidebarProvider from "@/components/sidebar/SidebarProvider";
 import NavbarProvider from "@/components/navbar/NavbarProvider";
 import QueryProvider from "@/components/queryclient/QueryProvider";
 import Footer from "@/components/footer/Footer";
+import { Slide, ToastContainer } from "react-toastify";
 
 // import { Geist, Geist_Mono } from "next/font/google";
 
@@ -46,6 +47,20 @@ export default function RootLayout({
                     {children}
                   </div>
                 </main>
+
+                <ToastContainer
+                  position="bottom-center"
+                  autoClose={2000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick={false}
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="light"
+                  transition={Slide}
+                />
                 <Footer />
               </NavbarProvider>
             </SidebarProvider>

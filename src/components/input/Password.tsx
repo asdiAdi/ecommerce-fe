@@ -2,10 +2,10 @@ import TableIcon from "@/components/core/TableIcon";
 import { ComponentPropsWithoutRef } from "react";
 import { cx } from "@/utils/common";
 
-type UsernameProps = ComponentPropsWithoutRef<"div">;
+type UsernameProps = ComponentPropsWithoutRef<"div"> & { name?: string };
 
 export default function Password(props: UsernameProps) {
-  const { className, ...rest } = props;
+  const { className, name = "password", ...rest } = props;
 
   return (
     <div className={cx("w-full", className)} {...rest}>
@@ -17,6 +17,7 @@ export default function Password(props: UsernameProps) {
           required
           placeholder="Password"
           minLength={8}
+          name={name}
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
         />
