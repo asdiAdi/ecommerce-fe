@@ -4,6 +4,8 @@ import Password from "@/components/input/Password";
 import { useMutation } from "@tanstack/react-query";
 import { postLogin } from "@/api/auth";
 import { useAuthStore } from "@/stores/authStore";
+import { toast } from "react-toastify";
+import { toggleModal } from "@/utils/modal";
 
 export default function FieldLogin(props: {
   hidden: boolean;
@@ -21,7 +23,10 @@ export default function FieldLogin(props: {
       setToken(data.access_token);
       toggle();
     },
-    onError: console.error,
+    onError: (e) => {
+      toggleModal("login");
+      toast.error(e.message);
+    },
   });
 
   return (

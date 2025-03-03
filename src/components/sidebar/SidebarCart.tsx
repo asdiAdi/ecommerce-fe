@@ -6,10 +6,12 @@ import { useMutation } from "@tanstack/react-query";
 import CartItem from "./CartItem";
 import { toggleModal } from "@/utils/modal";
 import { postCartItems } from "@/api/cart";
+import { useAuthStore } from "@/stores/authStore";
 
 export default function SidebarCart(props: { children: ReactNode }) {
   const { children } = props;
 
+  const { isAuth } = useAuthStore();
   const { isOpen, toggle, refetchCart, cartData } = useSidebar();
 
   const { mutate } = useMutation({
@@ -57,11 +59,24 @@ export default function SidebarCart(props: { children: ReactNode }) {
 
           <button
             className="daisy-btn bottom-0 w-full daisy-btn-primary"
-            onClick={() => toggleModal("login")}
+            onClick={() => {
+              if (isAuth) {
+              } else {
+                toggleModal("login");
+              }
+            }}
           >
             {`Checkout Now ($${sum})`}
           </button>
-          <button className="daisy-btn bottom-0 w-full daisy-btn-outline">
+          <button
+            className="daisy-btn bottom-0 w-full daisy-btn-outline"
+            onClick={() => {
+              if (isAuth) {
+              } else {
+                toggleModal("login");
+              }
+            }}
+          >
             View Cart
           </button>
         </>

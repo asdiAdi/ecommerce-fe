@@ -15,6 +15,7 @@ import { getCartItems } from "@/api/cart";
 import { PaginatedType } from "@/schemas/MetaSchema";
 import { CartType } from "@/schemas/CartSchema";
 import useCategoryStore from "@/stores/categoryStore";
+import { useAuthStore } from "@/stores/authStore";
 
 export type SidebarOpenType = "category" | "account" | "theme" | "cart" | null;
 type SidebarContextType = {
@@ -29,8 +30,10 @@ const SidebarContext = createContext<SidebarContextType>(null!);
 export default function SidebarProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState<SidebarOpenType>(null);
 
+  const { isAuth } = useAuthStore();
+
   const { data: cartData, refetch: refetchCart } = useQuery({
-    queryKey: ["cart"],
+    queryKey: ["cart", isAuth],
     queryFn: () => getCartItems(),
     placeholderData: keepPreviousData,
   });

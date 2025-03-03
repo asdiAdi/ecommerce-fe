@@ -22,12 +22,14 @@ export default function Password(props: UsernameProps) {
           title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
         />
 
+        {/*
+        TODO: show pass
         <TableIcon
           name="eye-off"
           className="p-0 opacity-50"
           size="2xs"
           href="/"
-        />
+        />*/}
       </label>
       <p className="daisy-validator-hint hidden text-sm">
         Must be more than 8 characters, including

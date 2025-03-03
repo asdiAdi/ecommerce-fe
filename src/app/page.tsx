@@ -12,26 +12,31 @@ import {
   getWishlistItems,
   postWishlistItem,
 } from "@/api/wishlist";
+import { useAuthStore } from "@/stores/authStore";
+import { toggleModal } from "@/utils/modal";
 
 export default function Home() {
   const params = useSearchParams();
 
   const { refetchCart } = useSidebar();
+  const { isAuth } = useAuthStore();
 
   const {
     data: dataMeta,
     isPending,
+    isLoading,
     isSuccess,
   } = useQuery({
-    queryKey: ["products", params.toString()],
+    queryKey: ["products", params.toString(), isAuth],
     queryFn: () => getProducts(params),
     placeholderData: keepPreviousData,
   });
 
   const { data: dataMetaWishlist, refetch: refetchWishlist } = useQuery({
-    queryKey: ["wishlist"],
+    queryKey: ["wishlist", isAuth],
     queryFn: () => getWishlistItems(),
     placeholderData: keepPreviousData,
+    enabled: isAuth,
   });
 
   const { mutate: onAdd } = useMutation({
@@ -66,7 +71,7 @@ export default function Home() {
   return (
     <div className="my-10 flex flex-col items-center gap-12">
       <div className="grid w-full place-items-center gap-4 px-4 sm:grid-cols-2 lg:grid-cols-4">
-        {(isPending || productData?.length === 0) &&
+        {(isPending || isLoading) &&
           new Array(20)
             .fill(0)
             .map((_, index) => (
@@ -78,14 +83,31 @@ export default function Home() {
 
         {!isPending &&
           isSuccess &&
+          productData?.length === 0 &&
+          "No Products Found!"}
+
+        {!isPending &&
+          isSuccess &&
           productData?.map((product, index) => {
             return (
               <CardProduct
                 key={index}
                 product={product}
-                onAdd={onAdd}
+                onAdd={(dat) => {
+                  if (isAuth) {
+                    onAdd(dat);
+                  } else {
+                    toggleModal("login");
+                  }
+                }}
                 isWishlist={wishlistAsin.includes(product.asin)}
-                onAddWishlist={onAddWishlist}
+                onAddWishlist={(asin) => {
+                  if (isAuth) {
+                    onAddWishlist(asin);
+                  } else {
+                    toggleModal("login");
+                  }
+                }}
                 onDeleteWishlist={() => {
                   if (wishlistData) {
                     const wishlistId = wishlistData.find(
